@@ -6,10 +6,9 @@ export async function load() {
 			`*[_type == "post"] | order(publishedAt desc) {
                 _id,
                 title,
-                slug,
+                excerpt,
                 publishedAt,
-                "imageUrl": image.asset->url,
-                body
+                "imageUrl": image.asset->url
             }`
 		);
 
@@ -17,7 +16,7 @@ export async function load() {
 			posts: posts || []
 		};
 	} catch (error) {
-		console.error('Erreur lors de la récupération des posts:', error);
+		console.error('Erreur lors de la récupération des actualités:', error);
 		return {
 			posts: [],
 			error: error instanceof Error ? error.message : 'Une erreur est survenue'
