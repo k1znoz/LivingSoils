@@ -1,0 +1,171 @@
+@import 'tailwindcss' layer(components);
+
+@layer components {
+
+    /* Cards - Inspiré Captain Darwin */
+    .card {
+        @apply bg-white rounded-xl overflow-hidden;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: var(--shadow-card);
+        transition: all var(--transition-base);
+    }
+
+    .card:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-4px);
+    }
+
+    .card-image {
+        @apply w-full h-64 object-cover;
+        transition: transform var(--transition-slow);
+    }
+
+    .card:hover .card-image {
+        transform: scale(1.05);
+    }
+
+    /* Buttons */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2;
+        @apply px-6 py-3 rounded-lg font-medium;
+        @apply transition-all duration-300;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    .btn-primary {
+        background: var(--color-primary);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: var(--color-primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+        background: var(--color-accent);
+        color: var(--color-text);
+    }
+
+    .btn-outline {
+        @apply border-2;
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+        background: transparent;
+    }
+
+    .btn-outline:hover {
+        background: var(--color-primary);
+        color: white;
+    }
+
+    /* Typography */
+    .section-title {
+        font-family: var(--font-heading);
+        font-size: var(--text-5xl);
+        font-weight: 700;
+        color: var(--color-text);
+        line-height: var(--leading-tight);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .section-subtitle {
+        font-size: var(--text-xl);
+        color: var(--color-text-light);
+        line-height: var(--leading-relaxed);
+        max-width: 65ch;
+    }
+
+    .card-title {
+        font-family: var(--font-heading);
+        font-size: var(--text-2xl);
+        font-weight: 600;
+        color: var(--color-text);
+        line-height: var(--leading-snug);
+    }
+
+    /* Layout */
+    .container {
+        @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+        max-width: var(--container-xl);
+    }
+
+    .section {
+        padding: var(--spacing-section) 0;
+    }
+
+    .grid-auto {
+        @apply grid gap-8;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    /* Hero sections - Style Under The Pole */
+    .hero {
+        @apply relative overflow-hidden;
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    }
+
+    .hero-overlay {
+        @apply absolute inset-0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    }
+
+    .hero-content {
+        @apply relative z-10 text-white;
+    }
+
+    /* Navigation */
+    .nav-link {
+        @apply relative text-base font-medium;
+        color: var(--color-text);
+        transition: color var(--transition-base);
+    }
+
+    .nav-link::after {
+        content: '';
+        @apply absolute bottom-0 left-0 w-0 h-0.5;
+        background: var(--color-primary);
+        transition: width var(--transition-base);
+    }
+
+    .nav-link:hover {
+        color: var(--color-primary);
+    }
+
+    .nav-link:hover::after {
+        @apply w-full;
+    }
+
+    /* Images with overlay */
+    .image-overlay-container {
+        @apply relative overflow-hidden rounded-lg;
+    }
+
+    .image-overlay {
+        @apply absolute inset-0 bg-gradient-to-t from-black/60 to-transparent;
+        opacity: 0;
+        transition: opacity var(--transition-base);
+    }
+
+    .image-overlay-container:hover .image-overlay {
+        opacity: 1;
+    }
+
+    /* Tags/Badges */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+        background: var(--color-earth-100);
+        color: var(--color-earth-700);
+    }
+
+    /* Dividers */
+    .divider {
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--color-earth-300), transparent);
+        margin: var(--spacing-xl) 0;
+    }
+}
