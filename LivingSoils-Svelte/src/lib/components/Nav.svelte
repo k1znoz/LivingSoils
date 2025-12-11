@@ -1,43 +1,47 @@
 <script lang="ts">
-    import { onMount, onDestroy } from 'svelte';
-    import { browser } from '$app/environment';
-    import '../styles/nav.css';
+	import { onMount, onDestroy } from 'svelte';
+	import { browser } from '$app/environment';
+	import '../styles/nav.css';
 
-    const maxOpacity = 0.8;
-    let navEl: HTMLElementTagNameMap['nav'] | null = null;
+	const maxOpacity = 0.8;
+	let navEl: HTMLElementTagNameMap['nav'] | null = null;
 
-    function updateNav() {
-        if (!browser) return;
+	function updateNav() {
+		if (!browser) return;
 
-        const scrollY = window.scrollY || 0;
-        const threshold = Math.max(window.innerHeight * 0.75, 1);
-        const ratio = Math.min(scrollY / threshold, 1);
-        const opacity = Math.min(ratio * maxOpacity, maxOpacity);
+		const scrollY = window.scrollY || 0;
+		const threshold = Math.max(window.innerHeight * 0.75, 1);
+		const ratio = Math.min(scrollY / threshold, 1);
+		const opacity = Math.min(ratio * maxOpacity, maxOpacity);
 
-        document.documentElement.style.setProperty('--nav-opacity', opacity.toString());
+		document.documentElement.style.setProperty('--nav-opacity', opacity.toString());
 
-        if (navEl) {
-            navEl.classList.toggle('nav-scrolling', scrollY > 0);
-            navEl.classList.toggle('nav-transparent', scrollY === 0);
-            navEl.classList.toggle('nav-compact', scrollY > threshold * 0.25);
-        }
-    }
+		if (navEl) {
+			navEl.classList.toggle('nav-scrolling', scrollY > 0);
+			navEl.classList.toggle('nav-transparent', scrollY === 0);
+			navEl.classList.toggle('nav-compact', scrollY > threshold * 0.25);
+		}
+	}
 
-    function onScroll() { updateNav(); }
-    function onResize() { updateNav(); }
+	function onScroll() {
+		updateNav();
+	}
+	function onResize() {
+		updateNav();
+	}
 
-    onMount(() => {
-        if (!browser) return;
-        updateNav();
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onResize);
-    });
+	onMount(() => {
+		if (!browser) return;
+		updateNav();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onResize);
+	});
 
-    onDestroy(() => {
-        if (!browser) return;
-        window.removeEventListener('scroll', onScroll);
-        window.removeEventListener('resize', onResize);
-    });
+	onDestroy(() => {
+		if (!browser) return;
+		window.removeEventListener('scroll', onScroll);
+		window.removeEventListener('resize', onResize);
+	});
 </script>
 
 <nav bind:this={navEl} class="nav nav-transparent">
@@ -46,7 +50,7 @@
 			<!-- Logo -->
 			<a href="/" class="flex items-center nav-logo">
 				<img
-					src="/logoLivingSoils.jpg"
+					src="/ressources/logoLivingSoils.jpg"
 					alt="LivingSoils Logo"
 					class="nav-logo-icon"
 					style="width: 2.5rem; height: 2.5rem;"

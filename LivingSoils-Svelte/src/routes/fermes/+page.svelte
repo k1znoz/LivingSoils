@@ -1,5 +1,5 @@
 <script>
-  export let data;
+	export let data;
 </script>
 
 <h1>Nos Fermes</h1>
@@ -12,7 +12,7 @@
 	<p>Aucune ferme disponible pour le moment.</p>
 {:else}
 	<div class="farms-grid">
-		{#each data.farms as farm}
+		{#each data.farms as farm (farm._id)}
 			<article class="farm-card">
 				{#if farm.imageUrl}
 					<img src={farm.imageUrl} alt={farm.name} />
@@ -30,35 +30,35 @@
 {/if}
 
 <style>
-  .farms-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
+	.farms-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 2rem;
+		margin-top: 2rem;
+	}
 
-  .farm-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-  }
+	.farm-card {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		overflow: hidden;
+	}
 
-  .farm-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
+	.farm-card img {
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+	}
 
-  .farm-card h2 {
-    padding: 1rem;
-    margin: 0;
-  }
+	.farm-card h2 {
+		padding: 1rem;
+		margin: 0;
+	}
 
-  .farm-card p {
-    padding: 0 1rem 1rem;
-  }
+	.farm-card p {
+		padding: 0 1rem 1rem;
+	}
 
-  .location {
-    color: #666;
-  }
+	.location {
+		color: #666;
+	}
 </style>

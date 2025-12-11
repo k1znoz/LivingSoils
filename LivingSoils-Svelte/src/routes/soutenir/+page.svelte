@@ -1,5 +1,5 @@
 <script>
-  export let data;
+	export let data;
 </script>
 
 <h1>Nous Soutenir</h1>
@@ -29,29 +29,29 @@
 {/if}
 
 <style>
-  .support-options {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
+	.support-options {
+		display: grid;
+		gap: 2rem;
+		margin-top: 2rem;
+	}
 
-  .support-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 2rem;
-  }
+	.support-card {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 2rem;
+	}
 
-  .cta-button {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-  }
+	.cta-button {
+		display: inline-block;
+		margin-top: 1rem;
+		padding: 0.75rem 1.5rem;
+		background: #2563eb;
+		color: white;
+		text-decoration: none;
+		border-radius: 4px;
+	}
 
-  .cta-button:hover {
-    background: #1d4ed8;
-  }
+	.cta-button:hover {
+		background: #1d4ed8;
+	}
 </style>

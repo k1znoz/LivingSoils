@@ -1,5 +1,5 @@
 <script>
-  export let data;
+	export let data;
 </script>
 
 <h1>Nos Partenaires</h1>
@@ -12,7 +12,7 @@
 	<p>Aucun partenaire pour le moment.</p>
 {:else}
 	<div class="partners-grid">
-		{#each data.partners as partner}
+		{#each data.partners as partner (partner._id)}
 			<article class="partner-card">
 				{#if partner.logoUrl}
 					<img src={partner.logoUrl} alt={partner.name} />
@@ -32,23 +32,23 @@
 {/if}
 
 <style>
-  .partners-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
+	.partners-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 2rem;
+		margin-top: 2rem;
+	}
 
-  .partner-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 2rem;
-    text-align: center;
-  }
+	.partner-card {
+		border: 1px solid #ddd;
+		border-radius: 8px;
+		padding: 2rem;
+		text-align: center;
+	}
 
-  .partner-card img {
-    max-width: 150px;
-    height: auto;
-    margin-bottom: 1rem;
-  }
+	.partner-card img {
+		max-width: 150px;
+		height: auto;
+		margin-bottom: 1rem;
+	}
 </style>
