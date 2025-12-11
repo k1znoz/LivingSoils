@@ -9,34 +9,41 @@ function urlFor(source) {
 }
 
 export async function load() {
-	const farms = await client.fetch(`*[_type == "farm"]`);
-	const posts = await client.fetch(`
-        *[_type == "post"] | order(publishedAt desc) {
-            _id,
-            title,
-            slug,
-            publishedAt,
-            excerpt,
-            mainImage {
-                asset->{
-                    _id,
-                    url
+	try {
+		const farms = await client.fetch(`*[_type == "farm"]`);
+		const posts = await client.fetch(`
+            *[_type == "post"] | order(publishedAt desc) {
+                _id,
+                title,
+                slug,
+                publishedAt,
+                excerpt,
+                mainImage {
+                    asset->{
+                        _id,
+                        url
+                    }
                 }
             }
-        }
-    `);
+        `);
 
-	// Générer les URLs des images
-	const postsWithImages = posts.map((post) => {
-		const imageUrl = post.mainImage ? urlFor(post.mainImage) : null;
+		const postsWithImages = posts.map((post) => {
+			const imageUrl = post.mainImage ? urlFor(post.mainImage) : null;
+			return {
+				...post,
+				mainImage: imageUrl
+			};
+		});
+
 		return {
-			...post,
-			mainImage: imageUrl
+			farmCount: farms.length,
+			posts: postsWithImages || []
 		};
-	});
-
-	return {
-		farmCount: farms.length,
-		posts: postsWithImages || []
-	};
+	} catch (error) {
+		console.error('Error loading data:', error);
+		return {
+			farmCount: 0,
+			posts: []
+		};
+	}
 }

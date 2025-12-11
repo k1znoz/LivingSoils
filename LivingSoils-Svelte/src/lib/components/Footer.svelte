@@ -1,3 +1,7 @@
+<script>
+	import '../styles/components.css';
+</script>
+
 <footer class="footer row-spread">
 	<div class="container content-margin">
 		<!-- 3 sections principales -->

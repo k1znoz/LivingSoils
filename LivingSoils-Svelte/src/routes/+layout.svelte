@@ -9,16 +9,22 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta
+		name="description"
+		content="LivingSoils - Réseau global pour la régénération des sols et l'agriculture durable"
+	/>
+	<link rel="icon" type="image/svg+xml" href={favicon} />
+	<title>LivingSoils - Réseau Global de Régénération des Sols</title>
 </svelte:head>
 
 <div class="min-h-screen flex flex-col">
 	<Nav />
-	<!-- Main Content -->
+
 	<main class="flex-1">
 		{@render children()}
 	</main>
 
-	<!-- Footer -->
 	<Footer />
 </div>
