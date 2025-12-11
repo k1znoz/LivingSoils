@@ -3,10 +3,13 @@
 </script>
 
 <!-- Hero Section -->
-<section class="hero">
+<section
+	class="hero page-gutter row-spread"
+	style="background-image: url('/hero.webp'); background-size: cover; background-position: center;"
+>
 	<div class="hero-overlay"></div>
-	<div class="container hero-content">
-		<div class="max-w-3xl">
+	<div class="container-wide hero-content content-wrap" style="padding-top: 6rem;">
+		<div class="max-w-3xl content-margin">
 			<h1 class="text-6xl font-bold mb-6" style="font-family: var(--font-heading);">
 				Réseau Global LivingSoils
 			</h1>
@@ -31,8 +34,8 @@
 </section>
 
 <!-- Stats Section -->
-<section class="section" style="background-color: var(--color-earth-100);">
-	<div class="container">
+<section class="section page-gutter row-spread" style="background-color: var(--color-earth-100);">
+	<div class="container-wide">
 		<div class="grid md:grid-cols-3 gap-8 text-center">
 			<div>
 				<div
@@ -66,8 +69,8 @@
 </section>
 
 <!-- Pages Preview -->
-<section class="section">
-	<div class="container">
+<section class="section page-gutter content-margin row-spread">
+	<div class="container-wide">
 		<h2 class="section-title text-center mb-4">Explorez notre réseau</h2>
 		<p class="section-subtitle text-center mx-auto mb-12">
 			Découvrez nos initiatives, rencontrez nos partenaires et rejoignez le mouvement
@@ -167,10 +170,10 @@
 
 <!-- CTA Section -->
 <section
-	class="section text-white"
+	class="section page-gutter text-white row-spread"
 	style="background: linear-gradient(to right, var(--color-primary-dark), var(--color-primary));"
 >
-	<div class="container text-center">
+	<div class="container-wide text-center">
 		<h2 class="text-4xl font-bold mb-4" style="font-family: var(--font-heading);">
 			Prêt à faire la différence ?
 		</h2>

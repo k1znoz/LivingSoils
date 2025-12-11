@@ -1,42 +1,37 @@
 <footer class="footer">
-	<div class="container">
-		<div class="grid md:grid-cols-4 gap-12 py-16">
-			<!-- About -->
-			<div class="md:col-span-2">
-				<div class="flex items-center gap-3 mb-4">
-					<div class="footer-logo">
-						<span class="footer-logo-text">LS</span>
-					</div>
-					<span class="footer-brand">LivingSoils</span>
+	<div class="container content-margin">
+		<!-- 3 sections principales -->
+		<div class="footer-grid">
+			<!-- Section 1: Soutenir -->
+			<div class="footer-section">
+				<div class="footer-icon-wrapper">
+					<svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24">
+						<path
+							d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+						/>
+					</svg>
 				</div>
-				<p class="footer-desc">
-					Réseau mondial dédié à la régénération des sols et à l'agriculture durable. Ensemble,
-					cultivons un avenir plus vert.
+				<h3 class="footer-section-title">Nous Soutenir</h3>
+				<p class="footer-section-desc">
+					Soutenez notre mission de régénération des sols en faisant un don ou en devenant membre.
 				</p>
+				<a href="/soutenir" class="footer-btn">Faire un don</a>
 			</div>
 
-			<!-- Quick Links -->
-			<div>
-				<h3 class="footer-heading">Navigation</h3>
-				<ul class="space-y-2">
-					<li><a href="/" class="footer-link">Réseau Global</a></li>
-					<li><a href="/fermes" class="footer-link">Nos Fermes</a></li>
-					<li><a href="/partenaires" class="footer-link">Partenaires</a></li>
-					<li><a href="/soutenir" class="footer-link">Nous Soutenir</a></li>
-					<li><a href="/actualites" class="footer-link">Actualités</a></li>
-				</ul>
-			</div>
-
-			<!-- Contact & Social -->
-			<div>
-				<h3 class="footer-heading">Contact</h3>
-				<ul class="space-y-2 mb-6 footer-contact">
-					<li>contact@livingsoils.org</li>
-					<li>+33 X XX XX XX XX</li>
-				</ul>
-
-				<h4 class="font-medium text-sm mb-3">Suivez-nous</h4>
-				<div class="flex gap-3">
+			<!-- Section 2: Réseaux sociaux -->
+			<div class="footer-section">
+				<div class="footer-icon-wrapper">
+					<svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24">
+						<path
+							d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+						/>
+					</svg>
+				</div>
+				<h3 class="footer-section-title">Suivez-nous</h3>
+				<p class="footer-section-desc">
+					Restez connectés avec LivingSoils et suivez nos actualités sur les réseaux sociaux.
+				</p>
+				<div class="footer-social-icons">
 					<a href="#" class="social-icon" aria-label="Facebook">
 						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 							<path
@@ -44,7 +39,6 @@
 							/>
 						</svg>
 					</a>
-
 					<a href="#" class="social-icon" aria-label="Instagram">
 						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 							<path
@@ -52,7 +46,6 @@
 							/>
 						</svg>
 					</a>
-
 					<a href="#" class="social-icon" aria-label="LinkedIn">
 						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 							<path
@@ -62,15 +55,40 @@
 					</a>
 				</div>
 			</div>
+
+			<!-- Section 3: Contact -->
+			<div class="footer-section">
+				<div class="footer-icon-wrapper">
+					<svg class="footer-icon" fill="currentColor" viewBox="0 0 24 24">
+						<path
+							d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+						/>
+					</svg>
+				</div>
+				<h3 class="footer-section-title">Nous Contacter</h3>
+				<p class="footer-section-desc">
+					Une question ? Une remarque ? Nous sommes à votre écoute pour échanger avec vous.
+				</p>
+				<a href="mailto:contact@livingsoils.org" class="footer-btn">Envoyer un mail</a>
+			</div>
 		</div>
 
-		<div class="divider opacity-20"></div>
+		<div class="divider"></div>
 
+		<!-- Footer bottom -->
 		<div class="footer-bottom">
-			<p>&copy; 2024 LivingSoils. Tous droits réservés.</p>
-			<div class="flex gap-6">
+			<div class="footer-bottom-left">
+				<div class="flex items-center gap-3 mb-2">
+					<img src="/logoLivingSoils.jpg" alt="LivingSoils" class="footer-logo-small" />
+					<span class="footer-brand-small">LivingSoils</span>
+				</div>
+				<p class="footer-copyright">&copy; 2024 LivingSoils. Tous droits réservés.</p>
+			</div>
+			<div class="footer-bottom-links">
 				<a href="#" class="footer-link-small">Mentions légales</a>
+				<span class="footer-separator">•</span>
 				<a href="#" class="footer-link-small">Politique de confidentialité</a>
+				<span class="footer-separator">•</span>
 				<a href="#" class="footer-link-small">CGU</a>
 			</div>
 		</div>
@@ -78,98 +96,186 @@
 </footer>
 
 <style>
-	.footer {
-		background-color: var(--color-earth-900);
-		color: white;
-		margin-top: 5rem;
-	}
+    .footer {
+        background-color: var(--color-earth-900);
+        color: white;
+        padding: 4rem 0 2rem;
+    }
 
-	.footer-logo {
-		width: 2.5rem;
-		height: 2.5rem;
-		background-color: rgba(255, 255, 255, 0.1);
-		border-radius: 0.5rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
 
-	.footer-logo-text {
-		color: var(--color-accent);
-		font-weight: 700;
-		font-size: 1.25rem;
-	}
+    @media (min-width: 768px) {
+        .footer-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+    }
 
-	.footer-brand {
-		font-family: var(--font-heading);
-		font-size: 1.5rem;
-		font-weight: 700;
-	}
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 1rem;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
 
-	.footer-desc {
-		color: rgba(255, 255, 255, 0.7);
-		line-height: 1.75;
-		max-width: 28rem;
-	}
+    .footer-section:hover {
+        transform: translateY(-4px);
+        background-color: rgba(255, 255, 255, 0.08);
+    }
 
-	.footer-heading {
-		font-family: var(--font-heading);
-		font-weight: 700;
-		font-size: 1.125rem;
-		margin-bottom: 1rem;
-	}
+    .footer-icon-wrapper {
+        width: 4rem;
+        height: 4rem;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
 
-	.footer-link {
-		color: rgba(255, 255, 255, 0.7);
-		transition: color 0.3s;
-	}
+    .footer-icon {
+        width: 2rem;
+        height: 2rem;
+        color: white;
+    }
 
-	.footer-link:hover {
-		color: var(--color-accent);
-	}
+    .footer-section-title {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: white;
+    }
 
-	.footer-contact {
-		color: rgba(255, 255, 255, 0.7);
-	}
+    .footer-section-desc {
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        max-width: 320px;
+    }
 
-	.social-icon {
-		width: 2.5rem;
-		height: 2.5rem;
-		background-color: rgba(255, 255, 255, 0.1);
-		border-radius: 9999px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: background-color 0.3s;
-	}
+    .footer-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 2rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
 
-	.social-icon:hover {
-		background-color: var(--color-accent);
-	}
+    .footer-btn:hover {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
-	.footer-bottom {
-		padding: 1.5rem 0;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		gap: 1rem;
-		color: rgba(255, 255, 255, 0.5);
-		font-size: 0.875rem;
-	}
+    .footer-social-icons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
 
-	@media (min-width: 768px) {
-		.footer-bottom {
-			flex-direction: row;
-		}
-	}
+    .social-icon {
+        width: 3rem;
+        height: 3rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
 
-	.footer-link-small {
-		color: rgba(255, 255, 255, 0.5);
-		transition: color 0.3s;
-	}
+    .social-icon:hover {
+        background-color: var(--color-primary);
+        transform: scale(1.1);
+    }
 
-	.footer-link-small:hover {
-		color: var(--color-accent);
-	}
+    .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 2rem 0;
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .footer-bottom {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    .footer-bottom-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (min-width: 768px) {
+        .footer-bottom-left {
+            align-items: flex-start;
+        }
+    }
+
+    .footer-logo-small {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.375rem;
+    }
+
+    .footer-brand-small {
+        font-family: var(--font-heading);
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    .footer-copyright {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.875rem;
+    }
+
+    .footer-bottom-links {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .footer-link-small {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+    }
+
+    .footer-link-small:hover {
+        color: var(--color-accent);
+    }
+
+    .footer-separator {
+        color: rgba(255, 255, 255, 0.3);
+    }
 </style>
