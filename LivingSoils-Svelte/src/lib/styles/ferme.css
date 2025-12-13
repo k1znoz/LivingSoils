@@ -1,0 +1,19 @@
+/* Styles spécifiques au composant Ferme */
+
+/* Utilitaires de couleurs */
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-default {
+    color: var(--color-text);
+}
+
+.text-light {
+    color: var(--color-text-light);
+}
+
+/* Arrière-plan dégradé primaire réutilisé (équiv. 135deg / bottom-right) */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+}

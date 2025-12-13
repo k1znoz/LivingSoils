@@ -1,6 +1,7 @@
 @import 'tailwindcss' layer(components);
 
 @layer components {
+
 	/* Cards */
 	.card {
 		@apply overflow-hidden rounded-xl bg-white;
@@ -47,14 +48,23 @@
 
 	.btn-outline {
 		@apply border-2;
-		border-color: var(--color-primary);
-		color: var(--color-primary);
-		background: transparent;
+		/* Improve contrast on dark backgrounds */
+		border-color: #ffffff;
+		color: #ffffff;
+		background: rgba(255, 255, 255, 0.08);
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
 	}
 
 	.btn-outline:hover {
 		background: var(--color-primary);
+		border-color: var(--color-primary);
 		color: #fff;
+	}
+
+	/* Accent utility for headings on dark backgrounds */
+	.section-accent {
+		color: #f3e0d0;
+		letter-spacing: 0.08em;
 	}
 
 	/* Typography */
@@ -95,6 +105,24 @@
 
 	/* Row utility: center items with spacing, without affecting titles */
 	.row-spread {
+
+		/* Base card: common look used across pages.
+   Variants/overrides live in each page CSS (see pages: fermes.css, actualites.css, soutenir.css). */
+		.card {
+			border: 1px solid var(--border-color, #ddd);
+			border-radius: 12px;
+			background: var(--surface, #fff);
+			box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, .06));
+			padding: 1rem;
+			/* pages may override spacing */
+		}
+
+		.card img {
+			width: 100%;
+			object-fit: cover;
+			border-radius: 8px;
+		}
+
 		display: flex;
 		flex-wrap: wrap;
 		gap: 2rem;

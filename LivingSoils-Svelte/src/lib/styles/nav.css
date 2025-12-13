@@ -4,6 +4,23 @@
 @import './themes.css';
 @import './components.css';
 
+/* Utilitaires utilisés par Nav.svelte */
+.heading-font {
+	font-family: var(--font-heading);
+}
+
+.nav-logo-gradient {
+	background: linear-gradient(to right, var(--color-primary), var(--color-primary-light));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.nav-cta-outline {
+	border-color: #ffffff;
+	color: #ffffff;
+}
+
 /* Variables pilotées par JS (Nav.svelte) */
 :root {
 	--nav-opacity: 0;

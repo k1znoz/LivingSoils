@@ -1,0 +1,104 @@
+.hero {
+    position: relative;
+    /* Dynamic background from component via --hero-bg */
+    background-image: var(--hero-bg);
+    background-size: cover;
+    background-position: center;
+}
+
+.hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    /* Dynamic overlay color/gradient from component via --hero-overlay */
+    background: var(--hero-overlay, rgba(0, 0, 0, 0.55));
+}
+
+.hero .hero-content {
+    position: relative;
+    padding-top: var(--hero-pt, 6rem);
+    padding-bottom: var(--hero-pb, 4rem);
+}
+
+/* Alignements */
+.align-left .hero-content .content-margin {
+    text-align: left;
+}
+
+.align-center .hero-content {
+    display: flex;
+    justify-content: center;
+}
+
+.align-center .hero-content .content-margin {
+    text-align: center;
+}
+
+.align-right .hero-content {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.align-right .hero-content .content-margin {
+    text-align: right;
+}
+
+/* Tailles */
+.hero-title {
+    font-family: var(--font-heading);
+    margin-bottom: 1.25rem;
+    color: var(--hero-text, #fff);
+}
+
+.size-sm .hero-title {
+    font-size: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+}
+
+.size-md .hero-title {
+    font-size: clamp(2.25rem, 3vw + 1rem, 3.25rem);
+}
+
+.size-lg .hero-title {
+    font-size: clamp(2.75rem, 4vw + 1rem, 3.75rem);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 1.2vw + 0.6rem, 1.25rem);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    opacity: .9;
+    color: var(--hero-text, #fff);
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Padding par taille */
+.size-sm .hero-content {
+    --hero-pt: 3.5rem;
+    --hero-pb: 2rem;
+}
+
+/* Button variants for hero
+   Note: base .btn style comes from components.css */
+.btn-variant-white {
+    background: #fff;
+    color: var(--color-primary);
+}
+
+.btn-variant-outline {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.size-md .hero-content {
+    --hero-pt: 5rem;
+    --hero-pb: 3rem;
+}
+
+.size-lg .hero-content {
+    --hero-pt: 6.5rem;
+    --hero-pb: 4rem;
+}

@@ -1,17 +1,13 @@
 <script>
 	import '../styles/components.css';
+    import '../styles/fondateur.css';
 </script>
 
 <!-- Section Fondateurs -->
 <section class="section page-gutter content-margin row-spread">
 	<div class="container-wide">
 		<div class="text-center mb-12">
-			<span
-				class="text-sm font-semibold uppercase tracking-wider"
-				style="color: var(--color-primary);"
-			>
-				L'Équipe
-			</span>
+			<span class="text-sm font-semibold uppercase tracking-wider"> L'Équipe </span>
 			<h2 class="section-title mt-2 mb-4">Les Fondateurs</h2>
 			<p class="section-subtitle mx-auto max-w-2xl">
 				Portée par Morgane Breuil et Arthur de Dinechin, Living Soils explore le rôle clé des
@@ -33,18 +29,13 @@
 					<div
 						class="absolute bottom-0 left-0 right-0 p-6 from-black/80 to-transparent rounded-b-2xl"
 					>
-						<h3
-							class="text-2xl font-bold text-white mb-1"
-							style="font-family: var(--font-heading);"
-						>
-							Morgane Breuil
-						</h3>
+						<h3 class="text-2xl font-bold text-white mb-1 heading-font">Morgane Breuil</h3>
 						<p class="text-white/90 font-medium">Co-fondatrice</p>
 					</div>
 				</div>
 
 				<div class="space-y-4">
-					<p style="color: var(--color-text);" class="leading-relaxed">
+					<p class="leading-relaxed text-default">
 						Passionnée par l'agroécologie et la biodiversité, Morgane apporte son expertise en
 						sciences de l'environnement et sa vision d'une agriculture régénératrice au service de
 						la planète.
@@ -52,8 +43,7 @@
 					<div class="flex gap-3">
 						<a
 							href="#"
-							class="text-sm font-medium flex items-center gap-2 transition-colors"
-							style="color: var(--color-primary);"
+							class="text-sm font-medium flex items-center gap-2 transition-colors text-primary"
 						>
 							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 								<path
@@ -79,26 +69,20 @@
 					<div
 						class="absolute bottom-0 left-0 right-0 p-6 from-black/80 to-transparent rounded-b-2xl"
 					>
-						<h3
-							class="text-2xl font-bold text-white mb-1"
-							style="font-family: var(--font-heading);"
-						>
-							Arthur de Dinechin
-						</h3>
+						<h3 class="text-2xl font-bold text-white mb-1 heading-font">Arthur de Dinechin</h3>
 						<p class="text-white/90 font-medium">Co-fondateur</p>
 					</div>
 				</div>
 
 				<div class="space-y-4">
-					<p style="color: var(--color-text);" class="leading-relaxed">
+					<p class="leading-relaxed text-default">
 						Fort d'une expérience en gestion de projets environnementaux, Arthur coordonne le réseau
 						mondial de fermes et développe les partenariats stratégiques de Living Soils.
 					</p>
 					<div class="flex gap-3">
 						<a
 							href="#"
-							class="text-sm font-medium flex items-center gap-2 transition-colors"
-							style="color: var(--color-primary);"
+							class="text-sm font-medium flex items-center gap-2 transition-colors text-primary"
 						>
 							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 								<path

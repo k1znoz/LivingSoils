@@ -3,9 +3,9 @@ import { createImageUrlBuilder } from '@sanity/image-url';
 
 const builder = createImageUrlBuilder(client);
 
-function urlFor(source) {
+function urlFor(source = String) {
 	if (!source) return null;
-	return builder.image(source).width(800).height(600).url();
+	return builder.image(source).url();
 }
 
 export async function load() {
@@ -27,6 +27,16 @@ export async function load() {
             }
         `);
 
+		// Fetch a subset of partners for homepage
+		const partners = await client.fetch(`
+		  *[_type == "partner"] | order(name asc)[0...8] {
+		    _id,
+		    name,
+		    website,
+		    logo
+		  }
+		`);
+
 		const postsWithImages = posts.map((post) => {
 			const imageUrl = post.mainImage ? urlFor(post.mainImage) : null;
 			return {
@@ -35,15 +45,22 @@ export async function load() {
 			};
 		});
 
+		const partnersWithLogos = partners.map((p : Partner) => ({
+			...p,
+			logoUrl: p.logo ? urlFor(p.logo) : null
+		}));
+
 		return {
 			farmCount: farms.length,
-			posts: postsWithImages || []
+			posts: postsWithImages || [],
+			partners: partnersWithLogos || []
 		};
 	} catch (error) {
 		console.error('Error loading data:', error);
 		return {
 			farmCount: 0,
-			posts: []
+			posts: [],
+			partners: []
 		};
 	}
 }

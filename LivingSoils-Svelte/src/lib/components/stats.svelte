@@ -4,21 +4,13 @@
 </script>
 
 <!-- Stats Section -->
-<section
-	class="section page-gutter stats-section row-spread"
-	style="
-        background-image: linear-gradient(rgba(62, 39, 35, 0.85), rgba(87, 57, 45, 0.9)), url('/ressources/ferme-vu-du-haut-768x.webp');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    "
->
+<section class="section page-gutter stats-section row-spread stats-section-bg">
 	<div class="container-wide">
 		<div class="text-center mb-12">
-			<h2 class="text-4xl font-bold mb-4" style="font-family: var(--font-heading); color: #f5e6d3;">
+			<h2 class="text-4xl font-bold mb-4 heading-font text-stats-heading">
 				Notre Impact en Chiffres
 			</h2>
-			<p class="text-lg max-w-2xl mx-auto" style="color: rgba(245, 230, 211, 0.85);">
+			<p class="text-lg max-w-2xl mx-auto text-stats-subtitle">
 				Des résultats concrets pour la régénération des sols et l'autonomie agricole
 			</p>
 		</div>

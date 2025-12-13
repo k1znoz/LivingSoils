@@ -30,5 +30,21 @@ export const farmType = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'coordinates',
+      title: 'Coordonnées GPS',
+      type: 'geopoint',
+      options: {
+        // Allows entering latitude/longitude with a map UI in Studio
+      },
+      validation: (rule) =>
+        rule.custom((v) => {
+          // Optional field; if present, must have both lat and lng
+          if (!v) return true
+          const hasLat = typeof v.lat === 'number' && !Number.isNaN(v.lat)
+          const hasLng = typeof v.lng === 'number' && !Number.isNaN(v.lng)
+          return (hasLat && hasLng) || 'Lat/Lng invalides'
+        }),
+    }),
   ],
 })

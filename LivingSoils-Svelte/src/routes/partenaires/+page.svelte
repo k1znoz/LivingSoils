@@ -1,54 +1,46 @@
 <script>
+	import "../../styles/pages/partenaires.css";
+	import "../../lib/styles/components.css";
 	export let data;
 </script>
 
-<h1>Nos Partenaires</h1>
+<h1 class="page-title">Nos Partenaires</h1>
 
 {#if data.error}
 	<p class="error">Erreur: {data.error}</p>
 {/if}
 
 {#if data.partners.length === 0}
-	<p>Aucun partenaire pour le moment.</p>
+	<div class="page-container">
+		<p>Aucun partenaire pour le moment.</p>
+	</div>
 {:else}
-	<div class="partners-grid">
-		{#each data.partners as partner (partner._id)}
-			<article class="partner-card">
-				{#if partner.logoUrl}
-					<img src={partner.logoUrl} alt={partner.name} />
-				{/if}
-				<h2>{partner.name}</h2>
-				{#if partner.description}
-					<p>{partner.description}</p>
-				{/if}
-				{#if partner.website}
-					<a href={partner.website} target="_blank" rel="noopener noreferrer">
-						Visiter le site →
-					</a>
-				{/if}
-			</article>
-		{/each}
+	<div class="page-container">
+		<div class="logo-grid">
+			{#each data.partners as partner (partner._id)}
+				<article class="logo-item">
+					{#if partner.website}
+						<a
+							href={partner.website}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label={`Aller au site de ${partner.name}`}
+						>
+							{#if partner.logoUrl}
+								<img src={partner.logoUrl} alt={partner.name} />
+							{:else}
+								<span class="partner-fallback">{partner.name}</span>
+							{/if}
+						</a>
+					{:else if partner.logoUrl}
+						<img src={partner.logoUrl} alt={partner.name} />
+					{:else}
+						<span class="partner-fallback">{partner.name}</span>
+					{/if}
+				</article>
+			{/each}
+		</div>
 	</div>
 {/if}
 
-<style>
-	.partners-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-		gap: 2rem;
-		margin-top: 2rem;
-	}
-
-	.partner-card {
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		padding: 2rem;
-		text-align: center;
-	}
-
-	.partner-card img {
-		max-width: 150px;
-		height: auto;
-		margin-bottom: 1rem;
-	}
-</style>
+<!-- Styles consolidated in src/styles/pages/partenaires.css for consistency -->

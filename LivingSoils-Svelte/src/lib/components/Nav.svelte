@@ -49,16 +49,8 @@
 		<div class="flex items-center nav-container">
 			<!-- Logo -->
 			<a href="/" class="flex items-center nav-logo">
-				<img
-					src="/ressources/logoLivingSoils.jpg"
-					alt="LivingSoils Logo"
-					class="nav-logo-icon"
-					style="width: 2.5rem; height: 2.5rem;"
-				/>
-				<span
-					class="nav-logo-text text-2xl font-bold"
-					style="font-family: var(--font-heading); background: linear-gradient(to right, var(--color-primary), var(--color-primary-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
-				>
+				<img src="/ressources/logoLivingSoils.jpg" alt="LivingSoils Logo" class="nav-logo-icon" />
+				<span class="nav-logo-text text-2xl font-bold heading-font nav-logo-gradient">
 					LivingSoils
 				</span>
 			</a>
@@ -73,11 +65,7 @@
 			</div>
 
 			<!-- CTA Button -->
-			<a
-				href="/soutenir"
-				class="nav-cta btn btn-outline hidden md:inline-flex"
-				style="border-color: #ffffff; color: #ffffff;"
-			>
+			<a href="/soutenir" class="nav-cta btn btn-outline nav-cta-outline hidden md:inline-flex">
 				Rejoignez-nous
 			</a>
 		</div>

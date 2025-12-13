@@ -1,5 +1,6 @@
 <script>
 	import '../styles/components.css';
+	import '../styles/ferme.css';
 	export let data;
 </script>
 
@@ -10,16 +11,13 @@
 			<!-- Texte explicatif -->
 			<div class="space-y-6">
 				<div>
-					<span
-						class="text-sm font-semibold uppercase tracking-wider"
-						style="color: var(--color-primary);"
-					>
+					<span class="text-sm font-semibold uppercase tracking-wider text-primary">
 						Notre Mission
 					</span>
 					<h2 class="section-title mt-2 mb-4">Des Fermes Régénératrices</h2>
 				</div>
 
-				<p class="text-lg leading-relaxed" style="color: var(--color-text);">
+				<p class="text-lg leading-relaxed text-default">
 					Le projet <strong>Living Soils</strong> accompagne un réseau mondial de fermes engagées dans
 					la régénération des sols. Chaque ferme partenaire applique des pratiques agroécologiques innovantes
 					qui restaurent la biodiversité et la fertilité naturelle des terres.
@@ -28,8 +26,7 @@
 				<div class="space-y-4">
 					<div class="flex gap-4">
 						<div
-							class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-							style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));"
+							class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-primary"
 						>
 							<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
 								<path
@@ -40,10 +37,8 @@
 							</svg>
 						</div>
 						<div>
-							<h3 class="font-semibold mb-1" style="color: var(--color-text);">
-								Agriculture Régénératrice
-							</h3>
-							<p style="color: var(--color-text-light);">
+							<h3 class="font-semibold mb-1 text-default">Agriculture Régénératrice</h3>
+							<p class="text-light">
 								Techniques qui améliorent la santé des sols tout en produisant des aliments de
 								qualité
 							</p>
@@ -52,8 +47,7 @@
 
 					<div class="flex gap-4">
 						<div
-							class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-							style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));"
+							class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-primary"
 						>
 							<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
 								<path
@@ -64,10 +58,8 @@
 							</svg>
 						</div>
 						<div>
-							<h3 class="font-semibold mb-1" style="color: var(--color-text);">
-								Biodiversité Restaurée
-							</h3>
-							<p style="color: var(--color-text-light);">
+							<h3 class="font-semibold mb-1 text-default">Biodiversité Restaurée</h3>
+							<p class="text-light">
 								Réintroduction d'espèces locales et création d'écosystèmes résilients
 							</p>
 						</div>
@@ -75,8 +67,7 @@
 
 					<div class="flex gap-4">
 						<div
-							class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center"
-							style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));"
+							class="shrink-0 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-primary"
 						>
 							<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
 								<path
@@ -87,8 +78,8 @@
 							</svg>
 						</div>
 						<div>
-							<h3 class="font-semibold mb-1" style="color: var(--color-text);">Impact Mesurable</h3>
-							<p style="color: var(--color-text-light);">
+							<h3 class="font-semibold mb-1 text-default">Impact Mesurable</h3>
+							<p class="text-light">
 								Suivi scientifique de la santé des sols et des résultats environnementaux
 							</p>
 						</div>
@@ -104,10 +95,7 @@
 
 			<!-- Espace vidéo -->
 			<div class="relative">
-				<div
-					class="aspect-video rounded-2xl overflow-hidden shadow-2xl"
-					style="background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-light));"
-				>
+				<div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-primary">
 					<!-- Placeholder pour la vidéo -->
 					<div class="w-full h-full flex items-center justify-center">
 						<div class="text-center text-white p-8">
@@ -139,10 +127,10 @@
 
 				<!-- Badge décoratif -->
 				<div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6 hidden md:block">
-					<div class="text-4xl font-bold" style="color: var(--color-primary);">
+					<div class="text-4xl font-bold text-primary">
 						{data.farmCount || 0}
 					</div>
-					<p class="text-sm font-medium" style="color: var(--color-text-light);">Fermes actives</p>
+					<p class="text-sm font-medium text-light">Fermes actives</p>
 				</div>
 			</div>
 		</div>

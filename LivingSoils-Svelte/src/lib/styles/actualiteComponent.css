@@ -1,0 +1,18 @@
+/* Styles spécifiques au composant Actualité */
+
+/* Image fallback (quand pas d'image principale) */
+.card-image--fallback {
+    z-index: 10;
+    background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-light));
+}
+
+/* Fond du contenu de carte (bloc texte) */
+.card-content-gradient {
+    background: linear-gradient(135deg, #6d4c41, #8b5a3c);
+    opacity: 0.95;
+}
+
+/* Texte clair utilitaire */
+.text-light {
+    color: var(--color-text-light);
+}

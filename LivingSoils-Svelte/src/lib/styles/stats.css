@@ -1,60 +1,80 @@
+	.stats-section-bg {
+		background-image: linear-gradient(rgba(62, 39, 35, 0.85), rgba(87, 57, 45, 0.9)), url('/ressources/ferme-vu-du-haut-768x.webp');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+	}
+
+	/* Utilitaires typographiques pour Stats */
+	.heading-font {
+		font-family: var(--font-heading);
+	}
+
+	.text-stats-heading {
+		color: #f5e6d3;
+	}
+
+	.text-stats-subtitle {
+		color: rgba(245, 230, 211, 0.85);
+	}
+
 	.stat-card {
-	    background: linear-gradient(135deg, #faf7f2 0%, #f5e6d3 100%);
-	    border-radius: 1rem;
-	    padding: 2rem;
-	    text-align: center;
-	    box-shadow: 0 10px 30px rgba(62, 39, 35, 0.3);
-	    border: 1px solid rgba(139, 90, 60, 0.1);
-	    transition:
-	        transform 0.3s ease,
-	        box-shadow 0.3s ease;
+		background: linear-gradient(135deg, #faf7f2 0%, #f5e6d3 100%);
+		border-radius: 1rem;
+		padding: 2rem;
+		text-align: center;
+		box-shadow: 0 10px 30px rgba(62, 39, 35, 0.3);
+		border: 1px solid rgba(139, 90, 60, 0.1);
+		transition:
+			transform 0.3s ease,
+			box-shadow 0.3s ease;
 	}
 
 	.stat-card:hover {
-	    transform: translateY(-8px);
-	    box-shadow: 0 15px 40px rgba(62, 39, 35, 0.4);
-	    border-color: rgba(139, 90, 60, 0.2);
+		transform: translateY(-8px);
+		box-shadow: 0 15px 40px rgba(62, 39, 35, 0.4);
+		border-color: rgba(139, 90, 60, 0.2);
 	}
 
 	.stat-icon-wrapper {
-	    width: 4rem;
-	    height: 4rem;
-	    margin: 0 auto 1rem;
-	    background: linear-gradient(135deg, #8b5a3c, #a0724f);
-	    border-radius: 50%;
-	    display: flex;
-	    align-items: center;
-	    justify-content: center;
-	    box-shadow: 0 4px 12px rgba(139, 90, 60, 0.3);
+		width: 4rem;
+		height: 4rem;
+		margin: 0 auto 1rem;
+		background: linear-gradient(135deg, #8b5a3c, #a0724f);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: 0 4px 12px rgba(139, 90, 60, 0.3);
 	}
 
 	.stat-icon {
-	    width: 2rem;
-	    height: 2rem;
-	    color: #faf7f2;
+		width: 2rem;
+		height: 2rem;
+		color: #faf7f2;
 	}
 
 	.stat-number {
-	    font-size: 3rem;
-	    font-weight: 700;
-	    font-family: var(--font-heading);
-	    background: linear-gradient(135deg, #8b5a3c, #a0724f);
-	    -webkit-background-clip: text;
-	    -webkit-text-fill-color: transparent;
-	    background-clip: text;
-	    line-height: 1;
-	    margin-bottom: 0.5rem;
+		font-size: 3rem;
+		font-weight: 700;
+		font-family: var(--font-heading);
+		background: linear-gradient(135deg, #8b5a3c, #a0724f);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1;
+		margin-bottom: 0.5rem;
 	}
 
 	.stat-label {
-	    font-size: 1.125rem;
-	    font-weight: 600;
-	    color: #5a3a2a;
-	    margin-bottom: 1rem;
+		font-size: 1.125rem;
+		font-weight: 600;
+		color: #5a3a2a;
+		margin-bottom: 1rem;
 	}
 
 	.stat-details {
-	    font-size: 0.875rem;
-	    color: #7d5a45;
-	    line-height: 1.6;
+		font-size: 0.875rem;
+		color: #7d5a45;
+		line-height: 1.6;
 	}

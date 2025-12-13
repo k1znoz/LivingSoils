@@ -1,0 +1,15 @@
+/* Styles spécifiques au composant Fondateurs */
+
+/* Police de titres dédiée */
+.heading-font {
+    font-family: var(--font-heading);
+}
+
+/* Couleurs utilitaires */
+.text-default {
+    color: var(--color-text);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}

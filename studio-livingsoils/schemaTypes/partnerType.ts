@@ -26,7 +26,7 @@ export const partnerType = defineType({
       title: 'Logo',
       type: 'image',
       options: {
-        hotspot: true,
+        hotspot: false, // DÉSACTIVEZ le hotspot qui cause le crop
       },
     }),
   ],

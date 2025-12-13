@@ -1,5 +1,6 @@
 <script>
 	import '../styles/components.css';
+	import '../styles/actualiteComponent.css';
 	let { data } = $props();
 </script>
 
@@ -17,26 +18,15 @@
 					<a href="/actualites/{post.slug.current}" class="card group">
 						<div class="image-overlay-container">
 							{#if post.mainImage}
-								<img
-									src={post.mainImage}
-									alt={post.title}
-									class="card-image"
-									style="object-fit: cover;"
-								/>
+								<img src={post.mainImage} alt={post.title} class="card-image" />
 							{:else}
-								<div
-									class="card-image"
-									style="z-index: 10; background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-light));"
-								></div>
+								<div class="card-image card-image--fallback"></div>
 							{/if}
 							<div class="image-overlay"></div>
 						</div>
-						<div
-							class="p-6"
-							style="background: linear-gradient(135deg, #6d4c41, #8b5a3c); opacity: 0.95;"
-						>
+						<div class="p-6 card-content-gradient">
 							<div class="flex items-center gap-2 mb-3">
-								<span class="text-sm font-medium" style="color: var(--color-primary);">
+								<span class="text-sm font-medium">
 									{new Date(post.publishedAt).toLocaleDateString('fr-FR', {
 										year: 'numeric',
 										month: 'long',
@@ -45,13 +35,10 @@
 								</span>
 							</div>
 							<h3 class="card-title mb-3">{post.title}</h3>
-							<p class="mb-4 line-clamp-3" style="color: var(--color-text-light);">
+							<p class="mb-4 line-clamp-3 text-light">
 								{post.excerpt || 'Découvrez cette actualité...'}
 							</p>
-							<span
-								class="font-medium inline-flex items-center gap-1 transition-all"
-								style="color: var(--color-primary);"
-							>
+							<span class="font-medium inline-flex items-center gap-1 transition-all">
 								Lire la suite →
 							</span>
 						</div>
@@ -59,7 +46,7 @@
 				{/each}
 			{:else}
 				<div class="col-span-full text-center py-12">
-					<p style="color: var(--color-text-light);">Aucune actualité pour le moment</p>
+					<p class="text-light">Aucune actualité pour le moment</p>
 				</div>
 			{/if}
 		</div>

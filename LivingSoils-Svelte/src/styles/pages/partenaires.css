@@ -1,0 +1,180 @@
+/* ============================================
+   PARTENAIRES - Styles partagés
+   ============================================ */
+
+/* -------------------- COMPOSANT PARTENAIRES (Homepage) -------------------- */
+
+/* Section background */
+.partners-section-bg {
+    /* Pas d'image de fond pour le moment */
+}
+
+/* Section header accent */
+.section-accent {
+    color: #f3e0d0;
+    letter-spacing: 0.08em;
+}
+
+/* Grille flex des partenaires */
+.partners-grid {
+    display: flex;
+    max-width: 1200px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+/* Carte partenaire */
+.partner-card {
+    background: linear-gradient(135deg, #6d4c41, #8b5a3c);
+    opacity: 0.95;
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 260px;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.partner-card a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.partner-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(62, 39, 35, 0.15);
+}
+
+/* Logo partenaire */
+.partner-logo {
+    filter: grayscale(5%) brightness(1.15) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+    opacity: 0.95;
+    transition:
+        filter 0.3s ease,
+        opacity 0.3s ease;
+
+    /* SUPPRIMER aspect-ratio, min-width, min-height */
+    max-width: 100%;
+    /* ← Ne dépasse pas la carte */
+    max-height: 100%;
+    /* ← Ne dépasse pas la carte */
+    width: auto;
+    /* ← Largeur automatique */
+    height: auto;
+    /* ← Hauteur automatique */
+    object-fit: contain;
+    /* ← Garde les proportions */
+}
+
+
+.partner-card:hover .partner-logo {
+    filter: grayscale(0%) brightness(1.2) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+    opacity: 1;
+}
+
+/* Message vide */
+.partners-empty {
+    padding: 2rem 0;
+}
+
+/* -------------------- STYLES COMMUNS -------------------- */
+
+/* Fallback text si pas de logo */
+.partner-fallback {
+    font-weight: 600;
+    color: var(--text-strong, #111);
+}
+
+/* -------------------- PAGE PARTENAIRES (Route /partenaires) -------------------- */
+
+.page-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.page-title {
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
+    margin-bottom: 1.5rem;
+}
+
+.logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-item {
+    background: color-mix(in oklab, white 92%, var(--surface));
+    border: 1px solid color-mix(in oklab, #FFFFFF 40%, var(--border));
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    max-width: 280px;
+    min-height: 180px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.logo-item img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    max-height: 120px;
+    object-fit: contain;
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+
+@media (min-width: 640px) {
+    .partner-card {
+        min-height: 160px;
+    }
+}
+
+@media (max-width: 640px) {
+
+    /* Composant Homepage */
+    .partners-grid {
+        width: 90%;
+        gap: 1rem;
+    }
+
+    .partner-card {
+        padding: 0.75rem;
+        min-height: 100px;
+    }
+
+    .partner-logo {
+        max-height: 80px;
+    }
+
+    /* Page Partenaires */
+    .logo-grid {
+        gap: 0.75rem;
+    }
+
+    .logo-item {
+        min-height: 140px;
+        padding: 0.75rem;
+    }
+}

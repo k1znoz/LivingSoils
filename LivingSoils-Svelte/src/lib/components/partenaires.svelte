@@ -1,19 +1,28 @@
-<script>
-		import '../styles/partenaires.css';
+<script context="module" lang="ts">
+	// Shape returned by homepage loader
+	export type Partner = {
+		_id: string;
+		name: string;
+		website?: string | null;
+		logoUrl?: string | null;
+	};
 </script>
 
-<section
-	class="section page-gutter row-spread"
-	style="
-        background-image: linear-gradient(rgba(62, 39, 35, 0.85), rgba(87, 57, 45, 0.9)), url('/ressources/RichSoil.webp');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    "
->
-	<div class="container-wide">
-		<div class="text-center mb-12">
-			<span class="text-sm font-semibold uppercase tracking-wider" style="color: #8b5a3c;">
+<script lang="ts">
+	import '../../styles/pages/partenaires.css';
+	import '../../lib/styles/components.css';
+
+	// Accept dynamic partners from homepage
+	export let partners: Partner[] = [];
+	// Optional: allow limiting visible items
+	export let limit: number = 8;
+	const visiblePartners: Partner[] = Array.isArray(partners) ? partners.slice(0, limit) : [];
+</script>
+
+<section class="section page-gutter row-spread partners-section-bg">
+	<div class="container-wide row-spread">
+		<div class="text-center">
+			<span class="text-sm font-semibold uppercase tracking-wider section-accent">
 				Nos Partenaires
 			</span>
 			<h2 class="section-title mt-2 mb-4">Ensemble pour Régénérer les Sols</h2>
@@ -22,43 +31,36 @@
 			</p>
 		</div>
 
-		<div class="partners-grid">
-			<!-- FAO -->
-			<div class="partner-card">
-				<img
-					src="/ressources/logo_partenaires/FAO_logo-1.png"
-					alt="FAO - Organisation des Nations Unies pour l'alimentation et l'agriculture"
-					class="partner-logo"
-				/>
+		{#if visiblePartners.length > 0}
+			<div class=" partners-grid">
+				{#each visiblePartners as p}
+					<div class="partner-card">
+						{#if p.website}
+							<a
+								href={p.website}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label={`Visiter ${p.name}`}
+							>
+								{#if p.logoUrl}
+									<img src={p.logoUrl} alt={p.name} class="partner-logo" />
+								{:else}
+									<div class="partner-fallback" aria-hidden="true">{p.name}</div>
+								{/if}
+							</a>
+						{:else if p.logoUrl}
+							<img src={p.logoUrl} alt={p.name} class="partner-logo" />
+						{:else}
+							<div class="partner-fallback" aria-hidden="true">{p.name}</div>
+						{/if}
+					</div>
+				{/each}
 			</div>
-
-			<!-- Explore -->
-			<div class="partner-card">
-				<img
-					src="/ressources/logo_partenaires/logo_black_EXPLORE.svg"
-					alt="Explore"
-					class="partner-logo"
-				/>
+		{:else}
+			<div class="partners-empty text-center">
+				<p class="section-subtitle">Les partenaires seront bientôt affichés.</p>
 			</div>
-
-			<!-- The Living Soil -->
-			<div class="partner-card">
-				<img
-					src="/ressources/logo_partenaires/the_living_soil_logo.jpg"
-					alt="The Living Soil"
-					class="partner-logo"
-				/>
-			</div>
-
-			<!-- UNGP -->
-			<div class="partner-card">
-				<img
-					src="/ressources/logo_partenaires/UNGP_WhiteLogo.png"
-					alt="UN Guiding Principles"
-					class="partner-logo"
-				/>
-			</div>
-		</div>
+		{/if}
 
 		<div class="text-center mt-12">
 			<a href="/partenaires" class="btn btn-outline"> Découvrir tous nos partenaires </a>
