@@ -24,9 +24,10 @@
     let map: any | undefined; // typed after dynamic import
     let errorMsg = "";
 
-    function validCoord(c) {
+    function validCoord(c: { lat: number; lng: number } | undefined | null): c is { lat: number; lng: number } {
         return (
-            c &&
+            c !== undefined &&
+            c !== null &&
             typeof c.lat === "number" && !Number.isNaN(c.lat) &&
             typeof c.lng === "number" && !Number.isNaN(c.lng)
         );

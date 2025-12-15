@@ -1,7 +1,47 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
 	import '../styles/components.css';
 	import '../styles/ferme.css';
-	export let data;
+	
+	let { data } = $props();
+
+	let isVideoPlaying = $state(false);
+
+	onMount(() => {
+		// Vérifier si l'API YouTube est déjà chargée
+		if (typeof window !== 'undefined' && window.YT?.Player) {
+			initPlayer();
+			return;
+		}
+
+		// Charger l'API YouTube si pas déjà présente
+		if (typeof document !== 'undefined' && !document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+			const tag = document.createElement('script');
+			tag.src = 'https://www.youtube.com/iframe_api';
+			const firstScriptTag = document.getElementsByTagName('script')[0];
+			if (firstScriptTag && firstScriptTag.parentNode) {
+				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+			}
+		}
+
+		// L'API appelle cette fonction quand elle est prête
+		if (typeof window !== 'undefined') {
+			window.onYouTubeIframeAPIReady = initPlayer;
+		}
+	});
+
+	function initPlayer() {
+		if (typeof window === 'undefined' || !window.YT) return;
+		
+		const YT = window.YT;
+		new YT.Player('farm-video', {
+			events: {
+				onStateChange: (event) => {
+					isVideoPlaying = event.data === YT.PlayerState.PLAYING;
+				}
+			}
+		});
+	}
 </script>
 
 <!-- Section Fermes -->
@@ -96,37 +136,26 @@
 			<!-- Espace vidéo -->
 			<div class="relative">
 				<div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-primary">
-					<!-- Placeholder pour la vidéo -->
 					<div class="w-full h-full flex items-center justify-center">
-						<div class="text-center text-white p-8">
-							<svg
-								class="w-20 h-20 mx-auto mb-4 opacity-50"
-								fill="currentColor"
-								viewBox="0 0 20 20"
-							>
-								<path
-									d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"
-								/>
-							</svg>
-							<p class="text-lg font-medium">Vidéo à venir</p>
-							<p class="text-sm opacity-75 mt-2">
-								Découvrez le fonctionnement d'une ferme régénératrice
-							</p>
-						</div>
+						<iframe
+							id="farm-video"
+							width="560"
+							height="315"
+							src="https://www.youtube.com/embed/gnhJVoWJYaw?si=Fj3FeSB1n8wKTcUh&enablejsapi=1"
+							title="YouTube video player"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							referrerpolicy="strict-origin-when-cross-origin"
+							allowfullscreen
+						></iframe>
 					</div>
-
-					<!-- Pour intégrer une vraie vidéo plus tard :
-                    <iframe 
-                        src="URL_YOUTUBE_OU_VIMEO" 
-                        title="Vidéo fermes" 
-                        class="w-full h-full"
-                        allowfullscreen
-                    ></iframe>
-                    -->
 				</div>
 
-				<!-- Badge décoratif -->
-				<div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-6 hidden md:block">
+				<!-- Badge décoratif avec animation -->
+				<div
+					class="farm-badge absolute bg-white rounded-xl shadow-xl p-6 hidden md:block"
+					class:playing={isVideoPlaying}
+				>
 					<div class="text-4xl font-bold text-primary">
 						{data.farmCount || 0}
 					</div>

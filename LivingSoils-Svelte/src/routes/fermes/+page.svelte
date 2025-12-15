@@ -29,32 +29,32 @@
 	{/if}
 
 	{#if data.farms.length === 0}
-		<div class="page-container">
-			<p>Aucune ferme disponible pour le moment.</p>
-		</div>
+		<p class="farms-empty">Aucune ferme disponible pour le moment.</p>
 	{:else}
-		<div class="page-container">
-			<div class="page-grid">
-				{#each data.farms as farm (farm._id)}
-					<article class="card">
-						{#if farm.imageUrl}
-							<img src={farm.imageUrl} alt={farm.name} />
-						{/if}
-						<h2>{farm.name}</h2>
+		<div class="farms-grid">
+			{#each data.farms as farm (farm._id)}
+				<article class="farm-card">
+					{#if farm.imageUrl}
+						<div class="farm-card__image-container">
+							<img src={farm.imageUrl} alt={farm.name} class="farm-card__image" />
+						</div>
+					{/if}
+					<div class="farm-card__content">
+						<h2 class="farm-card__title">{farm.name}</h2>
 						{#if farm.location}
-							<p class="location">📍 {farm.location}</p>
+							<p class="farm-card__location">📍 {farm.location}</p>
 						{/if}
 						{#if farm.description}
-							<p>{farm.description}</p>
+							<p class="farm-card__description">{farm.description}</p>
 						{/if}
-					</article>
-				{/each}
-			</div>
+					</div>
+				</article>
+			{/each}
 		</div>
 	{/if}
 
 	<!-- Section Carte -->
-	<section id="carte" class="row-spread">
+	<section id="carte" class="farms-map-section">
 		<h2 class="page-title">Carte des fermes</h2>
 		<MapFarms farms={data.farms} />
 	</section>

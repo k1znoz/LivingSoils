@@ -102,3 +102,14 @@
     --hero-pt: 6.5rem;
     --hero-pb: 4rem;
 }
+
+.btn-hero:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(9, 63, 16, 0.15);
+    background: var(--color-primary-light);
+}
+
+.primary-btn-hero:hover {
+    color: #fff;
+}

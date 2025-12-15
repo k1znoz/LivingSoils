@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {DmsCoordinatesInput} from '../components/DmsCoordinatesInput'
 
 export const farmType = defineType({
   name: 'farm',
@@ -33,9 +34,10 @@ export const farmType = defineType({
     defineField({
       name: 'coordinates',
       title: 'Coordonnées GPS',
+      description: 'Saisissez au format DMS (ex: 5°12\'36.4"N 3°45\'22.8"W) ou décimal',
       type: 'geopoint',
-      options: {
-        // Allows entering latitude/longitude with a map UI in Studio
+      components: {
+        input: DmsCoordinatesInput,
       },
       validation: (rule) =>
         rule.custom((v) => {

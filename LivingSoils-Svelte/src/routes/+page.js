@@ -45,7 +45,7 @@ export async function load() {
 			};
 		});
 
-		const partnersWithLogos = partners.map((p : Partner) => ({
+		const partnersWithLogos = partners.map((p) => ({
 			...p,
 			logoUrl: p.logo ? urlFor(p.logo) : null
 		}));

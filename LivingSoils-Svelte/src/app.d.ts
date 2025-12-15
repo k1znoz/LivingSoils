@@ -8,6 +8,24 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	// Types pour l'API YouTube IFrame
+	interface Window {
+		YT?: {
+			Player: new (
+				elementId: string,
+				config: {
+					events?: {
+						onStateChange?: (event: { data: number }) => void;
+					};
+				}
+			) => void;
+			PlayerState: {
+				PLAYING: 1;
+			};
+		};
+		onYouTubeIframeAPIReady?: () => void;
+	}
 }
 
 export {};

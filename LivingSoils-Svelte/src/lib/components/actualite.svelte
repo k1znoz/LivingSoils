@@ -12,41 +12,54 @@
 			sols
 		</p>
 
-		<div class="grid-auto">
+		<div class="actualites-grid">
 			{#if data.posts && data.posts.length > 0}
 				{#each data.posts.slice(0, 4) as post (post._id)}
-					<a href="/actualites/{post.slug.current}" class="card group">
-						<div class="image-overlay-container">
+					<a href="/actualites/{post.slug.current}" class="actualite-card">
+						<div class="actualite-card__image-container">
 							{#if post.mainImage}
-								<img src={post.mainImage} alt={post.title} class="card-image" />
+								<img src={post.mainImage} alt={post.title} class="actualite-card__image" />
 							{:else}
-								<div class="card-image card-image--fallback"></div>
+								<div class="actualite-card__image actualite-card__image--fallback"></div>
 							{/if}
-							<div class="image-overlay"></div>
+							<div class="actualite-card__overlay"></div>
 						</div>
-						<div class="p-6 card-content-gradient">
-							<div class="flex items-center gap-2 mb-3">
-								<span class="text-sm font-medium">
-									{new Date(post.publishedAt).toLocaleDateString('fr-FR', {
-										year: 'numeric',
-										month: 'long',
-										day: 'numeric'
-									})}
-								</span>
-							</div>
-							<h3 class="card-title mb-3">{post.title}</h3>
-							<p class="mb-4 line-clamp-3 text-light">
+						<div class="actualite-card__content">
+							<time class="actualite-card__date">
+								{new Date(post.publishedAt).toLocaleDateString('fr-FR', {
+									year: 'numeric',
+									month: 'long',
+									day: 'numeric'
+								})}
+							</time>
+							<h3 class="actualite-card__title">{post.title}</h3>
+							<p class="actualite-card__excerpt">
 								{post.excerpt || 'Découvrez cette actualité...'}
 							</p>
-							<span class="font-medium inline-flex items-center gap-1 transition-all">
-								Lire la suite →
+							<span class="actualite-card__link">
+								Lire la suite
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 16 16"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M6 3L11 8L6 13"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
 							</span>
 						</div>
 					</a>
 				{/each}
 			{:else}
-				<div class="col-span-full text-center py-12">
-					<p class="text-light">Aucune actualité pour le moment</p>
+				<div class="actualites-empty">
+					<p>Aucune actualité pour le moment</p>
 				</div>
 			{/if}
 		</div>
