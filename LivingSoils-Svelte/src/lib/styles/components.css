@@ -1,221 +1,251 @@
-@import 'tailwindcss' layer(components);
+/* Cards */
+.card {
+	overflow: hidden;
+	border-radius: 0.75rem;
+	background: white;
+	border: 1px solid #6d4c41;
+	box-shadow: var(--shadow-card);
+	transition: var(--transition-base);
+}
 
-@layer components {
+.card:hover {
+	box-shadow: var(--shadow-hover);
+	transform: translateY(-4px);
+}
 
-	/* Cards */
-	.card {
-		@apply overflow-hidden rounded-xl bg-white;
-		border: 1px solid #6d4c41;
-		box-shadow: var(--shadow-card);
-		transition: var(--transition-base);
-	}
+.card-image {
+	height: 16rem;
+	width: 100%;
+	object-fit: cover;
+	transition: var(--transition-slow);
+}
 
-	.card:hover {
-		box-shadow: var(--shadow-hover);
-		transform: translateY(-4px);
-	}
+.card:hover .card-image {
+	transform: scale(1.05);
+}
 
-	.card-image {
-		@apply h-64 w-full object-cover;
-		transition: var(--transition-slow);
-	}
+/* Buttons */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	border-radius: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	outline: none;
+}
 
-	.card:hover .card-image {
-		transform: scale(1.05);
-	}
+.btn:focus {
+	ring: 2px;
+	ring-offset: 2px;
+}
 
-	/* Buttons */
-	.btn {
-		@apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium focus:ring-2 focus:ring-offset-2 focus:outline-none;
-		transition: 300ms;
-	}
+.btn-primary {
+	background: var(--color-primary);
+	color: #fff;
+}
 
-	.btn-primary {
-		background: var(--color-primary);
-		color: #fff;
-	}
+.btn-primary:hover {
+	background: var(--color-primary-dark);
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-lg);
+}
 
-	.btn-primary:hover {
-		background: var(--color-primary-dark);
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-lg);
-	}
+.btn-secondary {
+	background: var(--color-accent);
+	color: var(--color-text);
+}
 
-	.btn-secondary {
-		background: var(--color-accent);
-		color: var(--color-text);
-	}
+.btn-outline {
+	border: 2px solid #ffffff;
+	border-color: #ffffff;
+	color: #ffffff;
+	background: rgba(255, 255, 255, 0.08);
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
 
-	.btn-outline {
-		@apply border-2;
-		/* Improve contrast on dark backgrounds */
-		border-color: #ffffff;
-		color: #ffffff;
-		background: rgba(255, 255, 255, 0.08);
-		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
-	}
+.btn-outline:hover {
+	background: var(--color-primary);
+	border-color: var(--color-primary);
+	color: #fff;
+}
 
-	.btn-outline:hover {
-		background: var(--color-primary);
-		border-color: var(--color-primary);
-		color: #fff;
-	}
+/* Accent utility for headings on dark backgrounds */
+.section-accent {
+	color: #f3e0d0;
+	letter-spacing: 0.08em;
+}
 
-	/* Accent utility for headings on dark backgrounds */
-	.section-accent {
-		color: #f3e0d0;
-		letter-spacing: 0.08em;
-	}
+/* Typography */
+.section-title {
+	font-family: var(--font-heading);
+	font-size: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+	font-weight: 700;
+	color: var(--color-text);
+	line-height: var(--leading-tight);
+	margin-bottom: var(--spacing-xl);
+}
 
-	/* Typography */
-	.section-title {
-		font-family: var(--font-heading);
-		font-size: clamp(2rem, 1.2rem + 2.5vw, 3rem);
-		font-weight: 700;
-		color: var(--color-text);
-		line-height: var(--leading-tight);
-		margin-bottom: var(--spacing-xl);
-	}
+.section-subtitle {
+	font-size: clamp(1rem, 0.85rem + 0.5vw, 1.25rem);
+	color: var(--color-text-light);
+	line-height: var(--leading-relaxed);
+	max-width: 60ch;
+	margin-top: var(--spacing-sm);
+}
 
-	.section-subtitle {
-		font-size: clamp(1rem, 0.85rem + 0.5vw, 1.25rem);
-		color: var(--color-text-light);
-		line-height: var(--leading-relaxed);
-		max-width: 60ch;
-		margin-top: var(--spacing-sm);
-	}
+.card-title {
+	font-family: var(--font-heading);
+	font-size: var(--text-2xl);
+	font-weight: 600;
+	color: var(--color-text);
+	line-height: var(--leading-snug);
+}
 
-	.card-title {
-		font-family: var(--font-heading);
-		font-size: var(--text-2xl);
-		font-weight: 600;
-		color: var(--color-text);
-		line-height: var(--leading-snug);
-	}
+/* Layout */
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	max-width: 1080px;
+}
 
-	/* Layout */
+@media (min-width: 640px) {
 	.container {
-		@apply mx-auto w-full px-4 sm:px-6 lg:px-8;
-		max-width: 1080px;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
 	}
+}
 
-	.container-wide {
-		max-width: 1080px;
+@media (min-width: 1024px) {
+	.container {
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
+}
 
-	/* Row utility: center items with spacing, without affecting titles */
-	.row-spread {
+.container-wide {
+	max-width: 1080px;
+}
 
-		/* Base card: common look used across pages.
-   Variants/overrides live in each page CSS (see pages: fermes.css, actualites.css, soutenir.css). */
-		.card {
-			border: 1px solid var(--border-color, #ddd);
-			border-radius: 12px;
-			background: var(--surface, #fff);
-			box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, .06));
-			padding: 1rem;
-			/* pages may override spacing */
-		}
+/* Row utility: center items with spacing, without affecting titles */
+.row-spread {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	justify-content: space-around;
+	align-items: center;
+}
 
-		.card img {
-			width: 100%;
-			object-fit: cover;
-			border-radius: 8px;
-		}
+/* Base card: common look used across pages */
+.card {
+	border: 1px solid var(--border-color, #ddd);
+	border-radius: 12px;
+	background: var(--surface, #fff);
+	box-shadow: var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, .06));
+	padding: 1rem;
+}
 
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2rem;
-		justify-content: space-around;
-		align-items: center;
-	}
+.card img {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 8px;
+}
 
-	.section {
-		padding: calc(var(--spacing-section) * 1.25) 0;
-	}
+.section {
+	padding: calc(var(--spacing-section) * 1.25) 0;
+}
 
-	.grid-auto {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 2rem;
-		justify-content: space-around;
-	}
+.grid-auto {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	justify-content: space-around;
+}
 
-	.grid-auto .card {
-		flex: 1 1 300px;
-		max-width: 520px;
-	}
+.grid-auto .card {
+	flex: 1 1 300px;
+	max-width: 520px;
+}
 
-	/* Hero */
-	.hero {
-		@apply relative overflow-hidden;
-		min-height: 70vh;
-		display: flex;
-		align-items: center;
-		background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-	}
+/* Hero */
+.hero {
+	position: relative;
+	overflow: hidden;
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+}
 
-	.hero-overlay {
-		@apply absolute inset-0;
-		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
-	}
+.hero-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+}
 
-	.hero-content {
-		@apply relative z-10 text-white;
-		max-width: 70ch;
-	}
+.hero-content {
+	position: relative;
+	z-index: 10;
+	color: white;
+	max-width: 70ch;
+}
 
-	/* Gutters & Content width */
-	.page-gutter {
-		padding-left: clamp(1rem, 4vw, 3rem);
-		padding-right: clamp(1rem, 4vw, 3rem);
-	}
+/* Gutters & Content width */
+.page-gutter {
+	padding-left: clamp(1rem, 4vw, 3rem);
+	padding-right: clamp(1rem, 4vw, 3rem);
+}
 
-	.page-gutter-lg {
-		padding-left: clamp(1.25rem, 6vw, 4rem);
-		padding-right: clamp(1.25rem, 6vw, 4rem);
-	}
+.page-gutter-lg {
+	padding-left: clamp(1.25rem, 6vw, 4rem);
+	padding-right: clamp(1.25rem, 6vw, 4rem);
+}
 
-	.content-wrap {
-		@apply mx-auto;
-		max-width: 1080px;
-	}
+.content-wrap {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1080px;
+}
 
-	.image-overlay-container {
-		position: relative;
-		overflow: hidden;
-	}
+.image-overlay-container {
+	position: relative;
+	overflow: hidden;
+}
 
-	.image-overlay {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
-		opacity: 0;
-		transition: opacity 0.3s ease;
-		pointer-events: none;
-	}
+.image-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
 
-	.card:hover .image-overlay {
-		opacity: 1;
-	}
+.card:hover .image-overlay {
+	opacity: 1;
+}
 
-	/* Limitation de lignes pour les excerpts */
-	.line-clamp-3 {
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
+/* Limitation de lignes pour les excerpts */
+.line-clamp-3 {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 
-	/* Stats section avec effet parallax */
+/* Stats section avec effet parallax */
+.stats-section {
+	position: relative;
+	padding: 5rem 0;
+}
+
+@media (min-width: 768px) {
 	.stats-section {
-		position: relative;
-		padding: 5rem 0;
-	}
-
-	@media (min-width: 768px) {
-		.stats-section {
-			padding: 6rem 0;
-		}
+		padding: 6rem 0;
 	}
 }
