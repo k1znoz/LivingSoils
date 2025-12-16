@@ -27,6 +27,7 @@
 		name="twitter:description"
 		content="Rejoignez le réseau LivingSoils pour régénérer les sols. Découvrez nos fermes engagées et les actualités sur l'agriculture régénérative."
 	/>
+	<script src="https://elfsightcdn.com/platform.js" async></script>
 </svelte:head>
 
 <Hero />
@@ -36,3 +37,6 @@
 <Fondateurs />
 <Galerie />
 <Partenaires partners={data?.partners} />
+<!-- Elfsight LinkedIn Feed | Untitled LinkedIn Feed -->
+
+<div class="elfsight-app-6c8b9279-1cd9-4bbe-9009-2af1210b43af" data-elfsight-app-lazy></div>

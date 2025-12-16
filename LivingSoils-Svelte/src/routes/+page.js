@@ -3,11 +3,41 @@ import { createImageUrlBuilder } from '@sanity/image-url';
 
 const builder = createImageUrlBuilder(client);
 
-function urlFor(source = String) {
+/**
+ * @param {any} source
+ * @returns {string | null}
+ */
+function urlFor(source) {
 	if (!source) return null;
 	return builder.image(source).url();
 }
 
+/**
+ * @typedef {Object} Farm
+ * @property {string} _id
+ */
+
+/**
+ * @typedef {Object} Post
+ * @property {string} _id
+ * @property {string} title
+ * @property {{ current: string }} slug
+ * @property {string} publishedAt
+ * @property {string} [excerpt]
+ * @property {string | null} mainImage
+ */
+
+/**
+ * @typedef {Object} Partner
+ * @property {string} _id
+ * @property {string} name
+ * @property {string} [website]
+ * @property {string | null} logoUrl
+ */
+
+/**
+ * @returns {Promise<{ farmCount: number, posts: Post[], partners: Partner[] }>}
+ */
 export async function load() {
 	try {
 		const farms = await client.fetch(`*[_type == "farm"]`);

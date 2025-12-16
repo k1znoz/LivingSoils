@@ -1,8 +1,67 @@
 <script>
+	import Hero from '$lib/components/Hero.svelte';
+	import { PortableText } from '@portabletext/svelte';
+	import { onMount } from 'svelte';
 	import '../../styles/pages/actualites.css';
 	import '../../lib/styles/components.css';
 
+	/**
+	 * @typedef {Object} Post
+	 * @property {string} _id
+	 * @property {string} title
+	 * @property {{ current: string }} slug
+	 * @property {string} [excerpt]
+	 * @property {string} publishedAt
+	 * @property {Array<any>} [body]
+	 * @property {string} [imageUrl]
+	 * @property {string} [imageAlt]
+	 */
+
+	/** @type {{ posts: Post[], error?: string }} */
 	export let data;
+
+	/** @type {Post | null} */
+	let selectedPost = null;
+
+	/**
+	 * @param {Post} post
+	 */
+	function openPost(post) {
+		selectedPost = post;
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closePost() {
+		selectedPost = null;
+		document.body.style.overflow = 'auto';
+	}
+
+	/**
+	 * @param {KeyboardEvent} event
+	 */
+	function handleKeydown(event) {
+		if (event.key === 'Escape' && selectedPost) {
+			closePost();
+		}
+	}
+
+	/**
+	 * @param {KeyboardEvent} event
+	 * @param {Post} post
+	 */
+	function handleCardKeydown(event, post) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			openPost(post);
+		}
+	}
+
+	onMount(() => {
+		window.addEventListener('keydown', handleKeydown);
+		return () => {
+			window.removeEventListener('keydown', handleKeydown);
+		};
+	});
 </script>
 
 <svelte:head>
@@ -27,35 +86,107 @@
 	/>
 </svelte:head>
 
-<h1 class="page-title">Actualités</h1>
+<Hero
+	title="Actualités"
+	subtitle="Suivez les dernières nouvelles de LivingSoils et découvrez les initiatives de régénération des sols à travers le monde."
+	background="/ressources/hero-fermes.webp"
+	align="center"
+	size="md"
+	primaryHref="#actualites"
+	primaryLabel="Découvrir"
+	secondaryHref="/soutenir"
+	secondaryLabel="Nous rejoindre"
+/>
 
 {#if data.error}
 	<p class="error">Erreur: {data.error}</p>
 {/if}
 
 {#if data.posts.length === 0}
-	<div class="page-container">
+	<div class="actualites-container">
 		<p>Aucune actualité pour le moment.</p>
 	</div>
 {:else}
-	<div class="page-container">
+	<div class="actualites-container row-spread" id="actualites">
 		<div class="page-grid">
 			{#each data.posts as post (post._id)}
-				<article class="card">
+				<button
+					class="card"
+					on:click={() => openPost(post)}
+					on:keydown={(e) => handleCardKeydown(e, post)}
+					type="button"
+				>
 					{#if post.imageUrl}
-						<img src={post.imageUrl} alt={post.title} />
+						<div class="card-image-wrapper">
+							<img src={post.imageUrl} alt={post.imageAlt || post.title} />
+						</div>
+					{:else}
+						<div class="card-image-placeholder">🌱</div>
 					{/if}
 					<div class="post-content">
-						<h2>{post.title}</h2>
 						{#if post.publishedAt}
-							<time>{new Date(post.publishedAt).toLocaleDateString('fr-FR')}</time>
+							<time
+								>{new Date(post.publishedAt).toLocaleDateString('fr-FR', {
+									year: 'numeric',
+									month: 'long',
+									day: 'numeric'
+								})}</time
+							>
 						{/if}
+						<h2>{post.title}</h2>
 						{#if post.excerpt}
 							<p>{post.excerpt}</p>
 						{/if}
+						<span class="read-more">Lire la suite</span>
 					</div>
-				</article>
+				</button>
 			{/each}
+		</div>
+	</div>
+{/if}
+
+<!-- Modal Article Complet -->
+{#if selectedPost}
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+	<div class="article-modal" on:click={closePost} role="dialog" aria-modal="true" tabindex="-1">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<div class="article-modal-content" on:click|stopPropagation>
+			<button class="modal-close" on:click={closePost} aria-label="Fermer l'article">
+				<span>✕</span>
+			</button>
+
+			{#if selectedPost.imageUrl}
+				<div class="article-hero-image">
+					<img src={selectedPost.imageUrl} alt={selectedPost.imageAlt || selectedPost.title} />
+				</div>
+			{/if}
+
+			<div class="article-content">
+				<header class="article-header">
+					{#if selectedPost.publishedAt}
+						<time class="article-date">
+							{new Date(selectedPost.publishedAt).toLocaleDateString('fr-FR', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}
+						</time>
+					{/if}
+					<h1 class="article-title">{selectedPost.title}</h1>
+				</header>
+
+				{#if selectedPost.body}
+					<div class="article-body">
+						<PortableText value={selectedPost.body} />
+					</div>
+				{:else if selectedPost.excerpt}
+					<div class="article-body">
+						<p>{selectedPost.excerpt}</p>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div>
 {/if}

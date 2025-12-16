@@ -39,7 +39,7 @@
 	secondaryLabel="Découvrir nos fermes"
 />
 
-<div class="page-container">
+<div class="partenaires-container">
 	<h2 class="page-title">Nos Partenaires</h2>
 
 	{#if data.error}

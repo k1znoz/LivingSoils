@@ -15,7 +15,7 @@
 		<div class="actualites-grid">
 			{#if data.posts && data.posts.length > 0}
 				{#each data.posts.slice(0, 4) as post (post._id)}
-					<a href="/actualites/{post.slug.current}" class="actualite-card">
+					<a href="/actualites/" class="actualite-card">
 						<div class="actualite-card__image-container">
 							{#if post.mainImage}
 								<img src={post.mainImage} alt={post.title} class="actualite-card__image" />
