@@ -1,0 +1,104 @@
+<script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
+	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
+	import '../styles/nav.css';
+
+	let navEl: HTMLElementTagNameMap['nav'] | null = null;
+
+	function updateNav() {
+		if (!browser) return;
+
+		const scrollY = window.scrollY || 0;
+
+		if (navEl) {
+			navEl.classList.toggle('nav-scrolling', scrollY > 0);
+			navEl.classList.toggle('nav-transparent', scrollY === 0);
+		}
+	}
+
+	function onScroll() {
+		updateNav();
+	}
+	function onResize() {
+		updateNav();
+	}
+
+	function isActive(href: string, currentPath: string): boolean {
+		const cleanHref = href.replace(/\/$/, '') || '/';
+		const cleanPath = currentPath.replace(/\/$/, '') || '/';
+		if (cleanHref === '/') return cleanPath === '/';
+		return cleanPath === cleanHref || cleanPath.startsWith(cleanHref + '/');
+	}
+
+	onMount(() => {
+		if (!browser) return;
+		updateNav();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onResize);
+	});
+
+	onDestroy(() => {
+		if (!browser) return;
+		window.removeEventListener('scroll', onScroll);
+		window.removeEventListener('resize', onResize);
+	});
+</script>
+
+<nav bind:this={navEl} class="nav nav-transparent">
+	<div class="container page-gutter-lg flex items-center nav-container">
+		<!-- Logo -->
+		<a href="/" class="flex items-center nav-logo">
+			<img src="/ressources/logoLivingSoils.jpg" alt="LivingSoils Logo" class="nav-logo-icon" />
+			<span class="nav-logo-text text-2xl font-bold heading-font nav-logo-gradient">
+				LivingSoils
+			</span>
+		</a>
+
+		<!-- Navigation Links -->
+		<div class="hidden md:flex nav-links">
+			{#key $page.url.pathname}
+				<a
+					href="/"
+					class="nav-link {isActive('/', $page.url.pathname) ? 'active' : ''}"
+					aria-current={isActive('/', $page.url.pathname) ? 'page' : undefined}
+				>
+					Réseau Global
+				</a>
+				<a
+					href="/fermes"
+					class="nav-link {isActive('/fermes', $page.url.pathname) ? 'active' : ''}"
+					aria-current={isActive('/fermes', $page.url.pathname) ? 'page' : undefined}
+				>
+					Nos Fermes
+				</a>
+				<a
+					href="/partenaires"
+					class="nav-link {isActive('/partenaires', $page.url.pathname) ? 'active' : ''}"
+					aria-current={isActive('/partenaires', $page.url.pathname) ? 'page' : undefined}
+				>
+					Partenaires
+				</a>
+				<a
+					href="/soutenir"
+					class="nav-link {isActive('/soutenir', $page.url.pathname) ? 'active' : ''}"
+					aria-current={isActive('/soutenir', $page.url.pathname) ? 'page' : undefined}
+				>
+					Nous Soutenir
+				</a>
+				<a
+					href="/actualites"
+					class="nav-link {isActive('/actualites', $page.url.pathname) ? 'active' : ''}"
+					aria-current={isActive('/actualites', $page.url.pathname) ? 'page' : undefined}
+				>
+					Actualités
+				</a>
+			{/key}
+		</div>
+
+		<!-- CTA Button -->
+		<a href="/soutenir" class="nav-cta btn btn-outline nav-cta-outline hidden md:inline-flex">
+			Rejoignez-nous
+		</a>
+	</div>
+</nav>

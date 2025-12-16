@@ -1,6 +1,6 @@
 <script>
-	import "../../styles/pages/actualites.css";
-	import "../../lib/styles/components.css";
+	import '../../styles/pages/actualites.css';
+	import '../../lib/styles/components.css';
 
 	export let data;
 </script>

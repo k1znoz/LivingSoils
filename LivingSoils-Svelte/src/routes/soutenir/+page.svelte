@@ -1,6 +1,6 @@
 <script>
-	import "../../styles/pages/soutenir.css";
-	import "../../lib/styles/components.css";
+	import '../../styles/pages/soutenir.css';
+	import '../../lib/styles/components.css';
 	export let data;
 </script>
 

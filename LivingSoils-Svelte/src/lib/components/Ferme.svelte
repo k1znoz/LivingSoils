@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import '../styles/components.css';
 	import '../styles/ferme.css';
-	
+
 	let { data } = $props();
 
 	let isVideoPlaying = $state(false);
@@ -15,7 +15,10 @@
 		}
 
 		// Charger l'API YouTube si pas déjà présente
-		if (typeof document !== 'undefined' && !document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+		if (
+			typeof document !== 'undefined' &&
+			!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')
+		) {
 			const tag = document.createElement('script');
 			tag.src = 'https://www.youtube.com/iframe_api';
 			const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -32,7 +35,7 @@
 
 	function initPlayer() {
 		if (typeof window === 'undefined' || !window.YT) return;
-		
+
 		const YT = window.YT;
 		new YT.Player('farm-video', {
 			events: {

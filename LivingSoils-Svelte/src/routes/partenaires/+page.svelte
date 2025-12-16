@@ -1,7 +1,7 @@
 <script>
-	import Hero from "$lib/components/Hero.svelte";
-	import "../../styles/pages/partenaires.css";
-	import "../../lib/styles/components.css";
+	import Hero from '$lib/components/Hero.svelte';
+	import '../../styles/pages/partenaires.css';
+	import '../../lib/styles/components.css';
 	export let data;
 </script>
 

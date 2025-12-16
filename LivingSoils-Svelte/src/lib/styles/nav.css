@@ -1,185 +1,340 @@
-@import 'tailwindcss';
-@source '../../**/*.{svelte,ts,js}';
+/* ============================================
+   NAV PRINCIPALE - SEED MOTION & RÉVÉLATION
+   ============================================ */
 
-@import './themes.css';
-@import './components.css';
-
-/* Utilitaires utilisés par Nav.svelte */
-.heading-font {
-	font-family: var(--font-heading);
-}
-
-.nav-logo-gradient {
-	background: linear-gradient(to right, var(--color-primary), var(--color-primary-light));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-}
-
-.nav-cta-outline {
-	border-color: #ffffff;
-	color: #ffffff;
-}
-
-/* Variables pilotées par JS (Nav.svelte) */
-:root {
-	--nav-opacity: 0;
-	--nav-bg-rgb: 42 76 20;
-	/* #2a4c14 */
-}
-
-/* Base nav: fixed et transitions */
-.nav {
+.main-nav {
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 50;
-	transition:
-		background-color 300ms ease,
-		backdrop-filter 300ms ease,
-		box-shadow 300ms ease,
-		padding 400ms ease,
-		gap 400ms ease;
-	padding-block: 1rem;
-	gap: 2rem;
-	/* Valeur initiale pour la transition */
+	z-index: 1000;
+	backdrop-filter: blur(10px) opacity(0.8);
+	padding: 1.2rem 0;
+	transition: padding 0.6s ease-in-out, box-shadow 0.6s ease-in-out, background-color 0.6s ease-in-out;
+
+	/* État initial - invisible et décalé */
+	opacity: 0;
+	transform: translateY(-20px);
 }
 
-/* En haut de page: transparent sur le hero */
-.nav.nav-transparent {
-	background-color: transparent;
-	box-shadow: none;
-}
-
-/* En scroll: fond vert avec opacité progressive */
-.nav.nav-scrolling {
-	background-color: rgba(var(--nav-bg-rgb) / var(--nav-opacity));
-	backdrop-filter: saturate(120%) blur(4px);
-	box-shadow: var(--shadow-card);
-}
-
-/* Option: compacter la nav en scroll */
-.nav.nav-compact {
-	padding-block: 7px;
-	gap: 0.5rem;
-}
-
-/* Liens (base) */
-.nav-link {
-	@apply relative text-base font-medium;
-	color: var(--color-text);
-	opacity: 0.9;
-	transition:
-		opacity 200ms ease,
-		color var(--transition-base);
-}
-
-.nav-link:hover {
+/* Apparition progressive au chargement */
+.main-nav.ready {
 	opacity: 1;
-	color: var(--color-primary);
+	transform: translateY(0);
 }
 
-.nav-link::after {
-	content: '';
-	@apply absolute bottom-0 left-0 h-0.5 w-0;
-	background: var(--color-primary);
-	transition: width var(--transition-base);
+/* État scrollé - se rétracte */
+.main-nav.scrolled {
+	padding: 0.6rem 0;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+	background: rgba(74, 124, 44, 0.8);
+
 }
 
-.nav-link:hover::after {
-	@apply w-full;
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+
+.nav-container {
+	max-width: 1500px;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 4rem;
+	transition: width 0.6s ease-in-out, height 0.6s ease-in-out;
 }
 
-/* Variante en haut de page (nav transparente sur hero) */
-.nav.nav-transparent .nav-link {
-	color: #fff;
+/* Réduction au scroll */
+.main-nav.scrolled .nav-container {
+	width: 75%;
+	height: 70%;
 }
 
-.nav.nav-transparent .nav-link::after {
-	background: rgba(255, 255, 255, 0.9);
+/* ============================================
+   LOGO
+   ============================================ */
+
+.logo-link {
+	flex-shrink: 0;
 }
 
-.nav.nav-transparent .nav-link:hover {
-	color: var(--color-primary-light);
+/* Transition au scroll */
+.ready .logo-link {
+	transition: transform 0.6s ease-in-out;
 }
 
-/* Gouttières larges pour la nav */
-.page-gutter-lg {
-	padding-left: 2rem;
-	padding-right: 2rem;
+.main-nav.scrolled .logo-link {
+	transform: translateX(30px);
 }
 
-@media (min-width: 768px) {
-	.page-gutter-lg {
-		padding-left: 4rem;
-		padding-right: 4rem;
+.logo {
+	height: 55px;
+	width: auto;
+	transition: height 0.6s ease-in-out;
+	filter: brightness(1);
+	border-radius: 10%;
+}
+
+.main-nav.scrolled .logo {
+	height: 45px;
+}
+
+/* ============================================
+   MENU CENTRÉ
+   ============================================ */
+
+.menu {
+	display: flex;
+	gap: 3.5rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+}
+
+/* ============================================
+   LIENS - SEED ANIMATION
+   ============================================ */
+
+.menu-link {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	color: #2c3e1f;
+	font-weight: 500;
+	font-size: 0.95rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	transition: color 0.6s ease-in-out;
+}
+
+.link-text {
+	display: block;
+	position: relative;
+	z-index: 1;
+}
+
+/* Graine / Seed sous le lien */
+.link-seed {
+	position: absolute;
+	left: 50%;
+	bottom: -6px;
+	width: 4px;
+	height: 4px;
+	background: #8b9a6f;
+	border-radius: 50%;
+	transform: translateX(-50%) scale(0);
+	transition: transform 0.6s ease-in-out, width 0.6s ease-in-out, height 0.6s ease-in-out, opacity 0.6s ease-in-out;
+	opacity: 0;
+}
+
+/* Hover - La graine s'étire en trait */
+.menu-link:hover .link-seed {
+	opacity: 1;
+	transform: translateX(-50%) scale(1);
+	width: 100%;
+	height: 2px;
+	border-radius: 1px;
+}
+
+.menu-link:hover {
+	color: #8b9a6f;
+}
+
+/* ============================================
+   LIEN ACTIF - PULSATION VIVANTE
+   ============================================ */
+
+.menu-link.active .link-seed {
+	opacity: 1;
+	transform: translateX(-50%) scale(1);
+	width: 100%;
+	height: 3px;
+	border-radius: 1.5px;
+	animation: seedPulse 1.5s ease-in-out infinite;
+}
+
+.menu-link.active {
+	color: #8b9a6f;
+}
+
+@keyframes seedPulse {
+
+	0%,
+	100% {
+		opacity: 0.6;
+	}
+
+	50% {
+		opacity: 1;
 	}
 }
 
-/* Liens de navigation avec gap dynamique */
-.nav-links {
-	gap: 2.5rem;
-	/* 10 = 2.5rem en Tailwind */
-	transition: gap 400ms ease;
+/* ============================================
+   CTA - PROPAGATION CIRCULAIRE
+   ============================================ */
+
+.cta-wrapper {
+	flex-shrink: 0;
 }
 
-.nav.nav-compact .nav-links {
-	gap: 1rem;
+/* Transition au scroll */
+.ready .cta-wrapper {
+	transition: transform 0.6s ease-in-out;
 }
 
-/* Logo avec transitions */
-.nav-logo {
-	gap: 0.75rem;
-	transition: gap 400ms ease;
+.main-nav.scrolled .cta-wrapper {
+	transform: translateX(-30px);
 }
 
-.nav-logo-icon {
-	width: 2.5rem;
-	height: 2.5rem;
-	border-radius: 0.5rem;
-	/* Angles arrondis */
-	transition:
-		width 400ms ease,
-		height 400ms ease;
-}
-
-.nav-logo-text {
-	transition: font-size 400ms ease;
-}
-
-.nav.nav-compact .nav-logo {
-	gap: 0.5rem;
-}
-
-.nav.nav-compact .nav-logo-icon {
-	width: 2rem;
-	height: 2rem;
-}
-
-.nav.nav-compact .nav-logo-text {
-	font-size: 1.25rem;
-}
-
-/* Bouton CTA avec transitions */
 .nav-cta {
-	transition:
-		padding 400ms ease,
-		font-size 400ms ease;
+	position: relative;
+	display: inline-block;
+	padding: 1rem 2.5rem;
+	background: #8b9a6f;
+	color: white;
+	text-decoration: none;
+	border-radius: 50px;
+	font-weight: 600;
+	font-size: 0.85rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	overflow: hidden;
+	/* Transitions spécifiques uniquement pour ce qui doit changer */
+	transition: transform 0.6s ease-in-out,
+		box-shadow 0.6s ease-in-out,
+		background-color 0.6s ease-in-out;
+	box-shadow: 0 4px 20px rgba(139, 154, 111, 0.35);
+	/* Force les dimensions à rester fixes */
+	min-width: fit-content;
 }
 
-.nav.nav-compact .nav-cta {
-	padding: 0.5rem 1rem;
-	font-size: 0.875rem;
+.nav-cta-text {
+	position: relative;
+	z-index: 2;
 }
 
-/* Conteneur principal de la nav */
-.nav-container {
-	gap: 4rem;
-	justify-content: center;
-	transition: gap 400ms ease;
+/* Overlay circulaire de propagation */
+.cta-overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	/* Transition de retour par défaut */
+	transition: width 0.6s ease-in-out,
+		height 0.6s ease-in-out;
+	z-index: 1;
 }
 
-.nav.nav-compact .nav-container {
-	gap: 2rem;
+.nav-cta:hover .cta-overlay {
+	width: 300px;
+	height: 300px;
+	/* Transition d'expansion au hover */
+	transition: width 0.6s ease-in-out,
+		height 0.6s ease-in-out;
+}
+
+.nav-cta:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 30px rgba(139, 154, 111, 0.45);
+	background-color: #9aaa7f;
+}
+
+.nav-cta:active {
+	transform: translateY(0);
+	box-shadow: 0 4px 20px rgba(139, 154, 111, 0.35);
+}
+
+/* ============================================
+   APPARITION STAGGERED DES ÉLÉMENTS
+   ============================================ */
+
+.nav-item {
+	opacity: 0;
+	transform: translateY(-10px);
+}
+
+.ready .nav-item {
+	animation: navItemAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+	animation-delay: calc(var(--delay) * 80ms);
+}
+
+@keyframes navItemAppear {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+	.menu {
+		gap: 2rem;
+	}
+
+	.nav-container {
+		gap: 2rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.main-nav {
+		padding: 1rem 0;
+	}
+
+	.nav-container {
+		padding: 0 1rem;
+		gap: 1rem;
+	}
+
+	.menu {
+		gap: 1.5rem;
+		font-size: 0.9rem;
+	}
+
+	.logo {
+		height: 40px;
+	}
+
+	.scrolled .logo {
+		height: 35px;
+	}
+
+	.cta-button {
+		padding: 0.7rem 1.5rem;
+		font-size: 0.85rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.menu {
+		display: none;
+	}
+
+	.nav-container {
+		justify-content: space-between;
+	}
+
+	.cta-button {
+		padding: 0.6rem 1.2rem;
+		font-size: 0.8rem;
+	}
 }

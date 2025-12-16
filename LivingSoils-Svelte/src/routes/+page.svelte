@@ -4,7 +4,7 @@
 	import Galerie from '$lib/components/Galerie.svelte';
 	import Fondateurs from '$lib/components/Fondateurs.svelte';
 	import Actualite from '$lib/components/Actualite.svelte';
-	
+
 	import Ferme from '$lib/components/Ferme.svelte';
 	import Partenaires from '$lib/components/Partenaires.svelte';
 	let { data } = $props();

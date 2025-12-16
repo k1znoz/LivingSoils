@@ -1,72 +1,59 @@
-<script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
-	import { browser } from '$app/environment';
+<script>
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import '../styles/nav.css';
 
-	const maxOpacity = 0.8;
-	let navEl: HTMLElementTagNameMap['nav'] | null = null;
-
-	function updateNav() {
-		if (!browser) return;
-
-		const scrollY = window.scrollY || 0;
-		const threshold = Math.max(window.innerHeight * 0.75, 1);
-		const ratio = Math.min(scrollY / threshold, 1);
-		const opacity = Math.min(ratio * maxOpacity, maxOpacity);
-
-		document.documentElement.style.setProperty('--nav-opacity', opacity.toString());
-
-		if (navEl) {
-			navEl.classList.toggle('nav-scrolling', scrollY > 0);
-			navEl.classList.toggle('nav-transparent', scrollY === 0);
-			navEl.classList.toggle('nav-compact', scrollY > threshold * 0.25);
-		}
-	}
-
-	function onScroll() {
-		updateNav();
-	}
-	function onResize() {
-		updateNav();
-	}
+	let scrolled = false;
+	let navReady = false;
 
 	onMount(() => {
-		if (!browser) return;
-		updateNav();
-		window.addEventListener('scroll', onScroll, { passive: true });
-		window.addEventListener('resize', onResize);
+		// Apparition progressive au chargement
+		setTimeout(() => {
+			navReady = true;
+		}, 100);
+
+		const handleScroll = () => {
+			scrolled = window.scrollY > 50;
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
 	});
 
-	onDestroy(() => {
-		if (!browser) return;
-		window.removeEventListener('scroll', onScroll);
-		window.removeEventListener('resize', onResize);
-	});
+	const menuItems = [
+		{ label: 'Accueil', href: '/' },
+		{ label: 'Fermes', href: '/fermes' },
+		{ label: 'Actualités', href: '/actualites' },
+		{ label: 'Partenaires', href: '/partenaires' }
+	];
+
+	$: currentPath = $page.url.pathname;
 </script>
 
-<nav bind:this={navEl} class="nav nav-transparent">
-	<div class="container page-gutter-lg">
-		<div class="flex items-center nav-container">
-			<!-- Logo -->
-			<a href="/" class="flex items-center nav-logo">
-				<img src="/ressources/logoLivingSoils.jpg" alt="LivingSoils Logo" class="nav-logo-icon" />
-				<span class="nav-logo-text text-2xl font-bold heading-font nav-logo-gradient">
-					LivingSoils
-				</span>
-			</a>
+<nav class="main-nav" class:scrolled class:ready={navReady}>
+	<div class="nav-container">
+		<!-- Logo à gauche -->
+		<a href="/" class="logo-link nav-item" style="--delay: 0">
+			<img src="/ressources/logoLivingSoils.jpg" alt="Living Soils" class="logo" />
+		</a>
 
-			<!-- Navigation Links -->
-			<div class="hidden md:flex nav-links">
-				<a href="/" class="nav-link">Réseau Global</a>
-				<a href="/fermes" class="nav-link">Nos Fermes</a>
-				<a href="/partenaires" class="nav-link">Partenaires</a>
-				<a href="/soutenir" class="nav-link">Nous Soutenir</a>
-				<a href="/actualites" class="nav-link">Actualités</a>
-			</div>
+		<!-- Menu centré -->
+		<ul class="menu">
+			{#each menuItems as item, i}
+				<li class="nav-item" style="--delay: {i + 1}">
+					<a href={item.href} class="menu-link" class:active={currentPath === item.href}>
+						<span class="link-text">{item.label}</span>
+						<span class="link-seed"></span>
+					</a>
+				</li>
+			{/each}
+		</ul>
 
-			<!-- CTA Button -->
-			<a href="/soutenir" class="nav-cta btn btn-outline nav-cta-outline hidden md:inline-flex">
-				Rejoignez-nous
+		<!-- CTA à droite -->
+		<div class="nav-item cta-wrapper" style="--delay: {menuItems.length + 1}">
+			<a href="/soutenir" class="nav-cta">
+				<span class="cta-overlay"></span>
+				<span class="nav-cta-text">Rejoignez-nous</span>
 			</a>
 		</div>
 	</div>

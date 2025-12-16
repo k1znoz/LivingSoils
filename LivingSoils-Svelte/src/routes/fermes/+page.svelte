@@ -1,12 +1,12 @@
 <script>
-    // Hero réutilisable
-    import Hero from "$lib/components/Hero.svelte";
-    import MapFarms from "$lib/components/MapFarms.svelte";
-    // Styles page
-    import "../../styles/pages/fermes.css";
-    import "../../lib/styles/components.css";
-	
-    export let data;
+	// Hero réutilisable
+	import Hero from '$lib/components/Hero.svelte';
+	import MapFarms from '$lib/components/MapFarms.svelte';
+	// Styles page
+	import '../../styles/pages/fermes.css';
+	import '../../lib/styles/components.css';
+
+	export let data;
 </script>
 
 <Hero

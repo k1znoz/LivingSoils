@@ -2,14 +2,14 @@
 
 /* Police de titres dédiée */
 .heading-font {
-    font-family: var(--font-heading);
+	font-family: var(--font-heading);
 }
 
 /* Couleurs utilitaires */
 .text-default {
-    color: var(--color-text);
+	color: var(--color-text);
 }
 
 .text-primary {
-    color: var(--color-primary);
+	color: var(--color-primary);
 }

@@ -1,6 +1,6 @@
 <script>
 	import '../styles/components.css';
-    import '../styles/fondateur.css';
+	import '../styles/fondateur.css';
 </script>
 
 <!-- Section Fondateurs -->

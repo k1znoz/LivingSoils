@@ -2,27 +2,28 @@
 
 /* Arrière-plan de la section galerie */
 .gallery-section-bg {
-    background-image: linear-gradient(rgba(62, 39, 35, 0.85), rgba(87, 57, 45, 0.9)), url('/ressources/RichSoil.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+	background-image:
+		linear-gradient(rgba(62, 39, 35, 0.85), rgba(87, 57, 45, 0.9)), url('/ressources/RichSoil.webp');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
 }
 
 /* Police de titre dédiée */
 .heading-font {
-    font-family: var(--font-heading);
+	font-family: var(--font-heading);
 }
 
 /* Images: supprimer l'espace inline et gérer la position si besoin */
 .gallery-image {
-    display: block;
+	display: block;
 }
 
 .gallery-image--center {
-    object-position: center;
+	object-position: center;
 }
 
 /* Overlay dégradé des cartes */
 .gallery-card-overlay {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
