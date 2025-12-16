@@ -137,7 +137,7 @@
 			</div>
 
 			<!-- Espace vidéo -->
-			<div class="relative">
+			<div class="relative w-full">
 				<div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-primary">
 					<div class="w-full h-full flex items-center justify-center">
 						<iframe

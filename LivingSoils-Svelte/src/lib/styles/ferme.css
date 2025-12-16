@@ -29,3 +29,23 @@
 .farm-badge.playing {
 	transform: translateY(140%);
 }
+
+/* Responsive pour le composant Ferme */
+@media (max-width: 768px) {
+	.farm-badge {
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		bottom: -2rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.section-title {
+		font-size: 1.875rem;
+	}
+
+	.text-lg {
+		font-size: 1rem;
+	}
+}

@@ -5,8 +5,19 @@
 	// Styles page
 	import '../../styles/pages/fermes.css';
 	import '../../lib/styles/components.css';
+	import { onMount } from 'svelte';
 
 	export let data;
+
+	onMount(() => {
+		// Activer la carte au clic
+		const mapRoot = document.querySelector('.map-root');
+		if (mapRoot) {
+			mapRoot.addEventListener('click', () => {
+				mapRoot.classList.add('active');
+			});
+		}
+	});
 </script>
 
 <svelte:head>

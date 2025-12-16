@@ -94,4 +94,29 @@
 	overflow: hidden;
 	background: #f8f9fb;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	position: relative;
+}
+
+/* Overlay pour désactiver l'interaction jusqu'au clic */
+.map-root::before {
+	content: 'Cliquer pour interagir avec la carte';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+	color: #333;
+	z-index: 1000;
+	pointer-events: all;
+	transition: opacity 0.3s ease;
+}
+
+.map-root.active::before {
+	opacity: 0;
+	pointer-events: none;
 }
