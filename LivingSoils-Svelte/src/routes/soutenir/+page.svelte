@@ -4,6 +4,25 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>Nous Soutenir - LivingSoils | Rejoignez le Mouvement</title>
+	<meta
+		name="description"
+		content="Soutenez LivingSoils et participez à la régénération des sols. Devenez partenaire, proposez votre ferme ou contribuez au développement de l'agriculture régénérative."
+	/>
+	<meta property="og:title" content="Nous Soutenir - LivingSoils | Rejoignez le Mouvement" />
+	<meta
+		property="og:description"
+		content="Soutenez LivingSoils et participez à la régénération des sols. Devenez partenaire ou proposez votre ferme."
+	/>
+	<meta property="og:url" content="https://thelivingsoils.org/soutenir" />
+	<meta name="twitter:title" content="Nous Soutenir - LivingSoils" />
+	<meta
+		name="twitter:description"
+		content="Soutenez LivingSoils et participez à la régénération des sols."
+	/>
+</svelte:head>
+
 <h1 class="page-title">Nous Soutenir</h1>
 
 {#if data.error}

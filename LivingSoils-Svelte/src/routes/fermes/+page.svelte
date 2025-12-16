@@ -9,6 +9,28 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>Nos Fermes - LivingSoils | Fermes en Agriculture Régénérative</title>
+	<meta
+		name="description"
+		content="Découvrez les fermes du réseau LivingSoils engagées dans la régénération des sols. Explorez notre carte interactive et rencontrez des agriculteurs passionnés par l'agroécologie."
+	/>
+	<meta
+		property="og:title"
+		content="Nos Fermes - LivingSoils | Fermes en Agriculture Régénérative"
+	/>
+	<meta
+		property="og:description"
+		content="Découvrez les fermes du réseau LivingSoils engagées dans la régénération des sols. Explorez notre carte interactive des fermes."
+	/>
+	<meta property="og:url" content="https://thelivingsoils.org/fermes" />
+	<meta name="twitter:title" content="Nos Fermes - LivingSoils" />
+	<meta
+		name="twitter:description"
+		content="Découvrez les fermes du réseau LivingSoils engagées dans la régénération des sols."
+	/>
+</svelte:head>
+
 <Hero
 	title="Nos fermes"
 	subtitle="Découvrez les fermes engagées dans la régénération des sols."

@@ -1,3 +1,7 @@
-# allow crawling everything by default
+# Robots.txt for LivingSoils
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://thelivingsoils.org/sitemap.xml

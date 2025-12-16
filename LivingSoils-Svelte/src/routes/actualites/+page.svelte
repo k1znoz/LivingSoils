@@ -5,6 +5,28 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>Actualités - LivingSoils | Agriculture Régénérative & Sols Vivants</title>
+	<meta
+		name="description"
+		content="Découvrez les dernières actualités de LivingSoils : innovations en agriculture régénérative, témoignages de fermes, événements et avancées dans la régénération des sols."
+	/>
+	<meta
+		property="og:title"
+		content="Actualités - LivingSoils | Agriculture Régénérative & Sols Vivants"
+	/>
+	<meta
+		property="og:description"
+		content="Découvrez les dernières actualités de LivingSoils : innovations en agriculture régénérative, témoignages de fermes et événements."
+	/>
+	<meta property="og:url" content="https://thelivingsoils.org/actualites" />
+	<meta name="twitter:title" content="Actualités - LivingSoils" />
+	<meta
+		name="twitter:description"
+		content="Découvrez les dernières actualités de LivingSoils : innovations en agriculture régénérative et témoignages de fermes."
+	/>
+</svelte:head>
+
 <h1 class="page-title">Actualités</h1>
 
 {#if data.error}

@@ -10,6 +10,25 @@
 	let { data } = $props();
 </script>
 
+<svelte:head>
+	<title>LivingSoils - Régénération des Sols & Agriculture Durable</title>
+	<meta
+		name="description"
+		content="Rejoignez le réseau LivingSoils pour régénérer les sols. Découvrez nos fermes engagées, nos fondateurs passionnés et les dernières actualités sur l'agriculture régénérative."
+	/>
+	<meta property="og:title" content="LivingSoils - Régénération des Sols & Agriculture Durable" />
+	<meta
+		property="og:description"
+		content="Rejoignez le réseau LivingSoils pour régénérer les sols. Découvrez nos fermes engagées, nos fondateurs passionnés et les dernières actualités sur l'agriculture régénérative."
+	/>
+	<meta property="og:url" content="https://thelivingsoils.org/" />
+	<meta name="twitter:title" content="LivingSoils - Régénération des Sols & Agriculture Durable" />
+	<meta
+		name="twitter:description"
+		content="Rejoignez le réseau LivingSoils pour régénérer les sols. Découvrez nos fermes engagées et les actualités sur l'agriculture régénérative."
+	/>
+</svelte:head>
+
 <Hero />
 <Ferme {data} />
 <Stats {data} />

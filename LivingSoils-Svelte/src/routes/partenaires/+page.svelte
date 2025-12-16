@@ -5,6 +5,28 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>Nos Partenaires - LivingSoils | Soutiens de l'Agriculture Durable</title>
+	<meta
+		name="description"
+		content="Découvrez les organisations et entreprises qui soutiennent LivingSoils dans sa mission de régénération des sols et de promotion de l'agriculture durable."
+	/>
+	<meta
+		property="og:title"
+		content="Nos Partenaires - LivingSoils | Soutiens de l'Agriculture Durable"
+	/>
+	<meta
+		property="og:description"
+		content="Découvrez les organisations et entreprises qui soutiennent LivingSoils dans sa mission de régénération des sols."
+	/>
+	<meta property="og:url" content="https://thelivingsoils.org/partenaires" />
+	<meta name="twitter:title" content="Nos Partenaires - LivingSoils" />
+	<meta
+		name="twitter:description"
+		content="Découvrez les organisations qui soutiennent LivingSoils dans sa mission de régénération des sols."
+	/>
+</svelte:head>
+
 <Hero
 	title="Nos Partenaires"
 	subtitle="Découvrez les organisations et entreprises qui soutiennent notre mission de régénération des sols."
