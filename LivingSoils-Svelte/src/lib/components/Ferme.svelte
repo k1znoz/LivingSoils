@@ -48,7 +48,7 @@
 </script>
 
 <!-- Section Fermes -->
-<section class="section page-gutter content-margin row-spread">
+<section class="section page-gutter content-margin">
 	<div class="container-wide">
 		<div class="grid md:grid-cols-2 gap-12 items-center">
 			<!-- Texte explicatif -->
@@ -139,14 +139,13 @@
 			<!-- Espace vidéo -->
 			<div class="relative w-full">
 				<div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gradient-primary">
-					<div class="w-full h-full flex items-center justify-center">
+					<div class="w-full h-full">
 						<iframe
 							id="farm-video"
-							width="560"
-							height="315"
+							width="100%"
+							height="100%"
 							src="https://www.youtube.com/embed/gnhJVoWJYaw?si=Fj3FeSB1n8wKTcUh&enablejsapi=1"
 							title="YouTube video player"
-							frameborder="0"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 							referrerpolicy="strict-origin-when-cross-origin"
 							allowfullscreen
