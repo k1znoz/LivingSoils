@@ -1,32 +1,15 @@
-<script>
+<script lang="ts">
 	import Hero from '$lib/components/Hero.svelte';
 	import { PortableText } from '@portabletext/svelte';
 	import { onMount } from 'svelte';
 	import '../../styles/pages/actualites.css';
 	import '../../lib/styles/components.css';
+	import type { ActualitesData, Post } from '$lib/types';
 
-	/**
-	 * @typedef {Object} Post
-	 * @property {string} _id
-	 * @property {string} title
-	 * @property {{ current: string }} slug
-	 * @property {string} [excerpt]
-	 * @property {string} publishedAt
-	 * @property {Array<any>} [body]
-	 * @property {string} [imageUrl]
-	 * @property {string} [imageAlt]
-	 */
+	export let data: ActualitesData;
+	let selectedPost: Post | null = null;
 
-	/** @type {{ posts: Post[], error?: string }} */
-	export let data;
-
-	/** @type {Post | null} */
-	let selectedPost = null;
-
-	/**
-	 * @param {Post} post
-	 */
-	function openPost(post) {
+	function openPost(post: Post) {
 		selectedPost = post;
 		document.body.style.overflow = 'hidden';
 	}
@@ -36,20 +19,13 @@
 		document.body.style.overflow = 'auto';
 	}
 
-	/**
-	 * @param {KeyboardEvent} event
-	 */
-	function handleKeydown(event) {
+	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Escape' && selectedPost) {
 			closePost();
 		}
 	}
 
-	/**
-	 * @param {KeyboardEvent} event
-	 * @param {Post} post
-	 */
-	function handleCardKeydown(event, post) {
+	function handleCardKeydown(event: KeyboardEvent, post: Post) {
 		if (event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
 			openPost(post);
@@ -147,13 +123,26 @@
 
 <!-- Modal Article Complet -->
 {#if selectedPost}
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<div class="article-modal" on:click={closePost} role="dialog" aria-modal="true" tabindex="-1">
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<div class="article-modal-content" on:click|stopPropagation>
-			<button class="modal-close" on:click={closePost} aria-label="Fermer l'article">
+	<div
+		class="article-modal"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="article-title"
+		tabindex="0"
+		on:keydown={(e) => e.key === 'Escape' && closePost()}
+	>
+		<!-- Accessible backdrop as a real button -->
+		<button
+			type="button"
+			class="article-backdrop"
+			aria-label="Fermer l'article"
+			on:click={closePost}
+		>
+		</button>
+
+		<!-- Stop pointer events instead of click to avoid a11y click-on-div warning -->
+		<div class="article-modal-content" on:pointerdown|stopPropagation>
+			<button class="modal-close" type="button" on:click={closePost} aria-label="Fermer l'article">
 				<span>✕</span>
 			</button>
 
@@ -174,12 +163,14 @@
 							})}
 						</time>
 					{/if}
-					<h1 class="article-title">{selectedPost.title}</h1>
+					<h1 id="article-title" class="article-title">{selectedPost.title}</h1>
 				</header>
 
 				{#if selectedPost.body}
 					<div class="article-body">
-						<PortableText value={selectedPost.body} />
+						<PortableText
+							value={selectedPost.body as import('@portabletext/types').PortableTextBlock[]}
+						/>
 					</div>
 				{:else if selectedPost.excerpt}
 					<div class="article-body">

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import { page } from '$app/stores';
+    import { resolve } from '$app/paths';
 	import '../styles/nav.css';
+	import type { MenuItem } from '$lib/types';
 
 	// Standard Svelte reactivity with explicit types
 	let scrolled: boolean = false;
@@ -22,7 +24,7 @@
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
 
-	const menuItems: Array<{ label: string; href: string }> = [
+	const menuItems: MenuItem[] = [
 		{ label: 'Accueil', href: '/' },
 		{ label: 'Fermes', href: '/fermes' },
 		{ label: 'Actualités', href: '/actualites' },
@@ -111,15 +113,15 @@
 >
 	<div class="nav-container">
 		<!-- Logo à gauche -->
-		<a href="/" class="logo-link nav-item" style="--delay: 0">
+		<a href={resolve('/')} class="logo-link nav-item" style="--delay: 0">
 			<img src="/ressources/logoLivingSoils.jpg" alt="Living Soils" class="logo" />
 		</a>
 
 		<!-- Menu centré - Desktop -->
 		<ul class="menu desktop-menu">
-			{#each menuItems as item, i}
+			{#each menuItems as item, i (item.href)}
 				<li class="nav-item" style="--delay: {i + 1}">
-					<a href={item.href} class="menu-link" class:active={currentPath === item.href}>
+					<a href={resolve(item.href)} class="menu-link" class:active={currentPath === item.href}>
 						<span class="link-text">{item.label}</span>
 						<span class="link-seed"></span>
 					</a>
@@ -129,7 +131,7 @@
 
 		<!-- CTA à droite - Desktop -->
 		<div class="nav-item cta-wrapper desktop-cta" style="--delay: {menuItems.length + 1}">
-			<a href="/soutenir" class="nav-cta">
+			<a href={resolve('/soutenir')} class="nav-cta">
 				<span class="nav-cta-text">Rejoignez-nous</span>
 			</a>
 		</div>
@@ -176,10 +178,10 @@
 				on:click|stopPropagation
 				on:keydown|stopPropagation
 			>
-				{#each menuItems as item, i}
+				{#each menuItems as item, i (item.href)}
 					<li class="mobile-menu-item" style="--delay: {i}">
 						<a
-							href={item.href}
+							href={resolve(item.href)}
 							class="mobile-menu-link"
 							role="menuitem"
 							class:active={currentPath === item.href}
@@ -191,7 +193,12 @@
 					</li>
 				{/each}
 				<li class="mobile-menu-item mobile-cta-item" style="--delay: {menuItems.length}">
-					<a href="/soutenir" class="nav-cta mobile-cta" role="menuitem" on:click={closeMobileMenu}>
+					<a
+						href={resolve('/soutenir')}
+						class="nav-cta mobile-cta"
+						role="menuitem"
+						on:click={closeMobileMenu}
+					>
 						<span class="cta-overlay"></span>
 						<span class="nav-cta-text">Rejoignez-nous</span>
 					</a>

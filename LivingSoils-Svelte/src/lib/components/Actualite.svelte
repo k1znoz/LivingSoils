@@ -1,7 +1,9 @@
-<script>
+<script lang="ts">
 	import '../styles/components.css';
 	import '../styles/actualiteComponent.css';
-	let { data } = $props();
+	import { resolve } from '$app/paths';
+	import type { ActualitesData } from '$lib/types';
+	let { data }: { data: ActualitesData } = $props();
 </script>
 
 <section class="section page-gutter content-margin row-spread">
@@ -15,10 +17,10 @@
 		<div class="actualites-grid">
 			{#if data.posts && data.posts.length > 0}
 				{#each data.posts.slice(0, 4) as post (post._id)}
-					<a href="/actualites/" class="actualite-card">
+					<a href={resolve('/actualites/')} class="actualite-card">
 						<div class="actualite-card__image-container">
-							{#if post.mainImage}
-								<img src={post.mainImage} alt={post.title} class="actualite-card__image" />
+							{#if post.imageUrl}
+								<img src={post.imageUrl} alt={post.title} class="actualite-card__image" />
 							{:else}
 								<div class="actualite-card__image actualite-card__image--fallback"></div>
 							{/if}
@@ -66,7 +68,7 @@
 
 		{#if data.posts && data.posts.length > 4}
 			<div class="text-center mt-12">
-				<a href="/actualites" class="btn btn-outline"> Voir toutes les actualités </a>
+				<a href={resolve('/actualites')} class="btn btn-outline"> Voir toutes les actualités </a>
 			</div>
 		{/if}
 	</div>

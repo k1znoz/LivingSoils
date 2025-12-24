@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
 	import '../../styles/pages/soutenir.css';
 	import '../../lib/styles/components.css';
-	export let data;
+	import { base } from '$app/paths';
+	import type { SoutenirData } from '$lib/types';
+	export let data: SoutenirData;
 </script>
 
 <svelte:head>
-	<title>Nous Soutenir - LivingSoils | Rejoignez le Mouvement</title>
 	<meta
 		name="description"
 		content="Soutenez LivingSoils et participez à la régénération des sols. Devenez partenaire, proposez votre ferme ou contribuez au développement de l'agriculture régénérative."
@@ -36,14 +37,17 @@
 {:else}
 	<div class="page-container">
 		<div class="options">
-			{#each data.supportOptions as option}
+			{#each data.supportOptions as option, i (i)}
 				<article class="option card">
 					<h2>{option.title}</h2>
 					{#if option.description}
 						<p>{option.description}</p>
 					{/if}
 					{#if option.link}
-						<a href={option.link} class="cta-button">
+						<a
+							href={option.link.startsWith('http') ? option.link : `${base}${option.link}`}
+							class="cta-button"
+						>
 							{option.buttonText || 'En savoir plus'}
 						</a>
 					{/if}

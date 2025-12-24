@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 	import '../styles/stats.css';
-	let { data } = $props();
+	import type { HomepageData } from '$lib/types';
+	let { data }: { data: Partial<HomepageData> } = $props();
 </script>
 
 <!-- Stats Section -->

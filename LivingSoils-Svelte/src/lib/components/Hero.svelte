@@ -1,30 +1,31 @@
-<script>
+<script lang="ts">
 	import '../styles/components.css';
 	import '../styles/hero.css';
+	import { base } from '$app/paths';
 
-	export let title = 'Réseau Global LivingSoils';
-	export let subtitle =
+	// Types explicites pour toutes les props (script d'instance)
+	export let title: string = 'Réseau Global LivingSoils';
+	export let subtitle: string =
 		"Ensemble, cultivons un avenir durable en régénérant nos sols et en soutenant l'agriculture respectueuse de la terre.";
 
-	export let background = '/ressources/hero.webp';
-	export let overlay = true;
-	export let overlayOpacity = 0.55;
-	export let overlayGradient = '';
+	export let background: string = '/ressources/hero.webp';
+	export let overlay: boolean = true;
+	export let overlayOpacity: number = 0.55;
+	export let overlayGradient: string = '';
 
-	export let align = 'left'; // 'left' | 'center' | 'right'
-	export let size = 'lg'; // 'sm' | 'md' | 'lg'
-	export let textColor = '#fff';
+	export let align: 'left' | 'center' | 'right' = 'left';
+	export let size: 'sm' | 'md' | 'lg' = 'lg';
+	export let textColor: string = '#fff';
 
-	export let primaryHref = '/fermes';
-	export let primaryLabel = 'Découvrir nos fermes';
-	export let primaryVariant = 'white'; // 'white' | 'outline'
-	export let secondaryHref = '/soutenir';
-	export let secondaryLabel = 'Nous rejoindre';
-	export let secondaryVariant = 'outline'; // 'white' | 'outline'
-	export let showSecondary = true;
+	export let primaryHref: string = '/fermes';
+	export let primaryLabel: string = 'Découvrir nos fermes';
+	export let primaryVariant: 'white' | 'outline' = 'white';
+	export let secondaryHref: string = '/soutenir';
+	export let secondaryLabel: string = 'Nous rejoindre';
+	export let secondaryVariant: 'white' | 'outline' = 'outline';
+	export let showSecondary: boolean = true;
 </script>
 
-<!-- Hero Section -->
 <section
 	class="hero page-gutter row-spread {`align-${align}`} {`size-${size}`}"
 	style={`--hero-bg: url('${background}'); --hero-text: ${textColor};`}
@@ -49,7 +50,7 @@
 			<div class="row-spread hero-actions">
 				{#if primaryLabel && primaryHref}
 					<a
-						href={primaryHref}
+						href={`${base}${primaryHref}`}
 						class="primary-btn-hero btn-hero btn {primaryVariant === 'white'
 							? 'btn-variant-white'
 							: 'btn-variant-outline'}"
@@ -60,7 +61,7 @@
 
 				{#if showSecondary && secondaryLabel && secondaryHref}
 					<a
-						href={secondaryHref}
+						href={`${base}${secondaryHref}`}
 						class="btn-hero btn {secondaryVariant === 'white'
 							? 'btn-variant-white'
 							: 'btn-variant-outline'}"

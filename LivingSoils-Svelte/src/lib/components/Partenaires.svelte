@@ -1,16 +1,12 @@
 <script context="module" lang="ts">
 	// Shape returned by homepage loader
-	export type Partner = {
-		_id: string;
-		name: string;
-		website?: string | null;
-		logoUrl?: string | null;
-	};
 </script>
 
 <script lang="ts">
 	import '../../styles/pages/partenaires.css';
 	import '../../lib/styles/components.css';
+	import type { Partner } from '$lib/types';
+    import { resolve } from '$app/paths';
 
 	// Accept dynamic partners from homepage
 	export let partners: Partner[] = [];
@@ -33,11 +29,11 @@
 
 		{#if visiblePartners.length > 0}
 			<div class=" partners-grid">
-				{#each visiblePartners as p}
+				{#each visiblePartners as p (p._id)}
 					<div class="partner-card">
 						{#if p.website}
 							<a
-								href={p.website}
+								href={resolve(p.website)}
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`Visiter ${p.name}`}
@@ -63,7 +59,7 @@
 		{/if}
 
 		<div class="text-center mt-12">
-			<a href="/partenaires" class="btn btn-outline"> Découvrir tous nos partenaires </a>
+			<a href={resolve('/partenaires')} class="btn btn-outline"> Découvrir tous nos partenaires </a>
 		</div>
 	</div>
 </section>

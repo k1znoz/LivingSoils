@@ -1,8 +1,10 @@
-<script>
+<script lang="ts">
 	import Hero from '$lib/components/Hero.svelte';
 	import '../../styles/pages/partenaires.css';
 	import '../../lib/styles/components.css';
-	export let data;
+	import { resolve } from '$app/paths';
+	import type { PartenairesData } from '$lib/types';
+	export let data: PartenairesData;
 </script>
 
 <svelte:head>
@@ -53,7 +55,7 @@
 				<article class="partner-card">
 					{#if partner.website}
 						<a
-							href={partner.website}
+							href={resolve(partner.website)}
 							target="_blank"
 							rel="noopener noreferrer"
 							class="partner-card__link"

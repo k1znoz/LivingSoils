@@ -2,8 +2,10 @@
 	import { onMount } from 'svelte';
 	import '../styles/components.css';
 	import '../styles/ferme.css';
+    import { resolve } from '$app/paths';
+	import type { HomepageData } from '$lib/types';
 
-	let { data } = $props();
+	let { data }: { data: Partial<HomepageData> } = $props();
 
 	let isVideoPlaying = $state(false);
 
@@ -130,7 +132,7 @@
 				</div>
 
 				<div class="pt-4">
-					<a href="/fermes" class="btn btn-primary">
+					<a href={resolve('/fermes')} class="btn btn-primary">
 						Découvrir nos {data.farmCount || 0} fermes
 					</a>
 				</div>

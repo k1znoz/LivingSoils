@@ -1,27 +1,14 @@
-<script context="module" lang="ts">
-	// Types align with Sanity `farm` document + client projection
-	export type Farm = {
-		_id: string;
-		name: string;
-		location: string;
-		description?: string;
-		imageUrl?: string;
-		// Optional fields used by the map component when available
-		link?: string;
-		coordinates?: { lat: number; lng: number };
-	};
-</script>
-
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import '../styles/MapFarms.css';
+	import type { Farm } from '$lib/types';
 	// Leaflet must be loaded client-side only; we'll import dynamically in onMount
 	// to avoid SSR errors (window is not defined)
 
 	export let farms: Farm[] = [];
 
 	let mapEl: HTMLDivElement;
-	let map: any | undefined; // typed after dynamic import
+	let map: import('leaflet').Map | undefined; // typed after dynamic import
 	let errorMsg = '';
 
 	function validCoord(
@@ -69,7 +56,7 @@
 			// Ajouter les marqueurs avec popups
 			farms.forEach((f) => {
 				const c = f?.coordinates;
-				if (!validCoord(c)) return;
+				if (!validCoord(c) || !map) return;
 				const m = L.marker([c.lat, c.lng]).addTo(map);
 				const html = `
                     <div style="min-width:180px">
@@ -91,17 +78,14 @@
 		initMap();
 	});
 
-	// Re-init when farms change (if map not yet created)
-	$: farms && !map && initMap();
+	// Map initialized on mount. If farms change later, markers will display on existing map.
 
 	onDestroy(() => {
-		try {
 			if (map) {
 				map.remove();
 				map = undefined;
 			}
-		} catch {}
-	});
+		});
 </script>
 
 <div bind:this={mapEl} class="map-root">
