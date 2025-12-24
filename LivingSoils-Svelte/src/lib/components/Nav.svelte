@@ -130,7 +130,6 @@
 		<!-- CTA à droite - Desktop -->
 		<div class="nav-item cta-wrapper desktop-cta" style="--delay: {menuItems.length + 1}">
 			<a href="/soutenir" class="nav-cta">
-				<span class="cta-overlay"></span>
 				<span class="nav-cta-text">Rejoignez-nous</span>
 			</a>
 		</div>
