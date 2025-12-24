@@ -29,7 +29,7 @@
 	height: 100%;
 	width: 100%;
 	margin: 0 auto;
-	padding: 0 0.5rem;
+	padding: 0 1.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -38,7 +38,7 @@
 		width 0.6s ease-in-out,
 		height 0.6s ease-in-out;
 	box-sizing: border-box;
-	overflow: hidden;
+	overflow: visible;
 }
 
 .menu {
@@ -115,6 +115,7 @@
 	transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out, background-color 0.6s ease-in-out;
 	box-shadow: 0 4px 20px rgba(139, 154, 111, 0.35);
 	min-width: fit-content;
+	max-width: 100%;
 }
 
 .nav-cta-text {
@@ -144,7 +145,13 @@
 	cursor: pointer;
 	padding: 10px;
 	z-index: 1001;
-	transition: transform 0.3s ease;
+	transition: transform 0.6s ease-in-out;
+}
+
+.main-nav.scrolled .hamburger {
+	transition: transform 0.6s ease-in-out;
+
+	transform: translateX(-30px);
 }
 
 .hamburger-line {
@@ -159,28 +166,43 @@
 	position: fixed;
 	inset: 0;
 	backdrop-filter: blur(20px);
-	z-index: 2000;
+	z-index: 9999;
 	display: flex;
-	align-items: stretch;
-	justify-content: center;
+	align-items: flex-start;
+	/* start at top to avoid vertical clipping */
+	justify-content: flex-start;
 	/* Assure un fond visible même si l'enfant n'occupe pas toute la hauteur */
 	background: rgba(74, 124, 44, 0.75);
 	overflow-y: auto;
+	overscroll-behavior: contain;
+	/* prevent background scroll */
+	-webkit-overflow-scrolling: touch;
 	opacity: 0;
 	pointer-events: none;
+	visibility: hidden;
 	transition: opacity 0.4s ease;
+	padding: 4rem 1rem 2rem;
+	/* leave room for close button and safe area */
+	transition: opacity 0.6s ease-in-out;
+
 }
 
 .mobile-menu.open {
 	opacity: 1;
 	pointer-events: all;
+	visibility: visible;
+	height: 100vh;
+	overflow: hidden;
+	transition: opacity 0.6s ease-in-out;
+
 }
 
-/* Fallback when class binding is on parent */
-.menu-open .mobile-menu {
-	opacity: 1;
-	pointer-events: all;
+/* Lock background scroll while menu is open */
+body.menu-open {
+	overflow: hidden;
 }
+
+
 
 .mobile-menu-list {
 	list-style: none;
@@ -189,8 +211,11 @@
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
-	height: 100vh;
+	justify-content: flex-start;
+	gap: 1.25rem;
+	height: auto;
+	min-height: 100vh;
+	/* fills viewport but can grow to enable scrolling */
 	width: 100%;
 	background: transparent;
 }
@@ -258,12 +283,19 @@
 	padding: 0.6rem 0;
 	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
 	background: rgba(74, 124, 44, 0.8);
+	gap: 10px;
+
 }
 
 .main-nav.scrolled.menu-open {
 	background: transparent;
 	box-shadow: none;
 	backdrop-filter: blur(0px);
+}
+
+
+.desktop-cta {
+	transition: transform 0.6s ease-in-out;
 }
 
 .ready .logo-link {
@@ -324,10 +356,7 @@
 	box-shadow: 0 4px 20px rgba(139, 154, 111, 0.35);
 }
 
-.nav-item {
-	opacity: 0;
-	transform: translateY(-10px);
-}
+
 
 .ready .nav-item {
 	animation: navItemAppear 0.5s ease-in-out forwards;
@@ -391,16 +420,7 @@
 }
 
 /* ===== Breakpoints (mobile-first) ===== */
-/* ≤ 600px: neutraliser translations qui causent débordement */
-@media (max-width: 600px) {
-	.main-nav.scrolled .logo-link {
-		transform: translateX(0) !important;
-	}
 
-	.main-nav.scrolled .cta-wrapper {
-		transform: translateX(0) !important;
-	}
-}
 
 @media (max-width: 480px) {
 	.mobile-menu-link {
@@ -426,13 +446,9 @@
 
 	.logo {
 		height: 35px;
-		max-width: 35px;
 	}
 
-	.main-nav.scrolled .logo {
-		height: 32px;
-		max-width: 32px;
-	}
+
 
 	.mobile-menu-link {
 		font-size: 1.5rem;
@@ -442,10 +458,58 @@
 	.nav-cta {
 		padding: 0.9rem 2rem;
 		font-size: 0.85rem;
+		min-width: 0;
+		/* allow CTA to shrink on small screens */
+		max-width: 60vw;
+		/* cap width to avoid layout overflow */
 	}
 
 	.hamburger {
 		padding: 5px;
+	}
+}
+
+/* Touch devices: disable hover-only effects to keep CTA stable */
+@media (hover: none) {
+	.nav-cta:hover {
+		transform: none;
+		box-shadow: 0 4px 20px rgba(139, 154, 111, 0.35);
+		background-color: #8b9a6f;
+	}
+
+	.nav-cta:hover .cta-overlay {
+		width: 0;
+		height: 0;
+	}
+}
+
+/* Ultra-small phones: further tighten CTA spacing */
+@media (max-width: 360px) {
+	.nav-cta {
+		padding: 0.7rem 1.2rem;
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		max-width: 70vw;
+	}
+
+	.cta-wrapper {
+		flex-shrink: 1;
+		/* allow CTA to yield space */
+	}
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+	.nav-cta,
+	.cta-overlay {
+		transition: none;
+	}
+
+	.ready .nav-item,
+	.mobile-menu.open .mobile-menu-item,
+	.menu-open .mobile-menu-item {
+		animation: none;
 	}
 }
 
@@ -462,6 +526,10 @@
 
 	.main-nav {
 		padding: 0.8rem 0;
+	}
+
+	.main-nav.scrolled.desktop-menu {
+		padding: 0 1rem;
 	}
 
 	.desktop-menu,
@@ -495,20 +563,37 @@
 @media (min-width: 769px) {
 	.nav-container {
 		gap: 4rem;
-	}
-
-	.main-nav.scrolled .nav-container {
-		width: 75%;
-		height: 70%;
+		width: 100%;
+		height: 100%;
 	}
 }
 
 @media (max-width: 1024px) {
+
+	/* Tighten spacing and allow content to breathe */
 	.menu {
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
 	.nav-container {
 		gap: 2rem;
+		padding: 0 1rem;
 	}
+
+	/* Prevent CTA/logo clipping around ~1000px */
+	.main-nav {
+		overflow-x: visible !important;
+	}
+
+	/* Allow CTA to shrink and reduce its footprint */
+	.cta-wrapper {
+		flex-shrink: 1;
+	}
+
+	.nav-cta {
+		padding: 0.85rem 1.9rem;
+		font-size: 0.82rem;
+	}
+
+
 }
