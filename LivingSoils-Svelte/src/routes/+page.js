@@ -67,15 +67,15 @@ export async function load() {
 		  }
 		`);
 
-		const postsWithImages = posts.map((post) => {
+		const postsWithImages = posts.map((/** @type {any} */ post) => {
 			const imageUrl = post.mainImage ? urlFor(post.mainImage) : null;
 			return {
 				...post,
-				mainImage: imageUrl
+				imageUrl: imageUrl
 			};
 		});
 
-		const partnersWithLogos = partners.map((p) => ({
+		const partnersWithLogos = partners.map((/** @type {any} */ p) => ({
 			...p,
 			logoUrl: p.logo ? urlFor(p.logo) : null
 		}));
