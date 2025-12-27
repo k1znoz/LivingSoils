@@ -81,11 +81,11 @@
 	// Map initialized on mount. If farms change later, markers will display on existing map.
 
 	onDestroy(() => {
-			if (map) {
-				map.remove();
-				map = undefined;
-			}
-		});
+		if (map) {
+			map.remove();
+			map = undefined;
+		}
+	});
 </script>
 
 <div bind:this={mapEl} class="map-root">

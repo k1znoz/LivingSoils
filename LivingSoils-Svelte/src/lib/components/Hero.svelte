@@ -50,7 +50,7 @@
 			<div class="row-spread hero-actions">
 				{#if primaryLabel && primaryHref}
 					<a
-						href={`${base}${primaryHref}`}
+						href="{base}{primaryHref}"
 						class="primary-btn-hero btn-hero btn {primaryVariant === 'white'
 							? 'btn-variant-white'
 							: 'btn-variant-outline'}"
@@ -61,7 +61,7 @@
 
 				{#if showSecondary && secondaryLabel && secondaryHref}
 					<a
-						href={`${base}${secondaryHref}`}
+						href="{base}{secondaryHref}"
 						class="btn-hero btn {secondaryVariant === 'white'
 							? 'btn-variant-white'
 							: 'btn-variant-outline'}"

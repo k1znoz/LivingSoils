@@ -1,8 +1,28 @@
 import { client } from '$lib/sanityClient';
+import type { Farm } from '$lib/types';
 
-export async function load() {
+type DmsInput = number | string | undefined | null;
+
+interface SanityFarm {
+	_id: string;
+	name: string;
+	location: string;
+	description?: string;
+	imageUrl?: string;
+	coordinates?: {
+		lat: DmsInput;
+		lng: DmsInput;
+	};
+}
+
+export interface FermesData {
+	farms: Farm[];
+	error?: string;
+}
+
+export async function load(): Promise<FermesData> {
 	try {
-		const farms = await client.fetch(
+		const farms = await client.fetch<SanityFarm[]>(
 			`*[_type == "farm"] | order(name asc) {
                 _id,
                 name,
@@ -14,7 +34,7 @@ export async function load() {
 		);
 
 		// Convertit les formats DMS (ex: 5°12'36.4"N) en décimal si nécessaire
-		function dmsToDecimal(input) {
+		function dmsToDecimal(input: DmsInput): number | undefined {
 			if (typeof input === 'number') return input;
 			if (typeof input !== 'string') return undefined;
 			const s = input.trim().toUpperCase();
@@ -35,16 +55,18 @@ export async function load() {
 			return val;
 		}
 
-		const normalized = (farms || []).map((f) => {
+		const normalized: Farm[] = (farms || []).map((f) => {
 			const c = f.coordinates;
-			if (!c) return f;
-			let { lat, lng } = c;
+			if (!c) return f as Farm;
+			const { lat, lng } = c;
 			const nlat = dmsToDecimal(lat);
 			const nlng = dmsToDecimal(lng);
 			return {
 				...f,
 				coordinates:
-					typeof nlat === 'number' && typeof nlng === 'number' ? { lat: nlat, lng: nlng } : c
+					typeof nlat === 'number' && typeof nlng === 'number'
+						? { lat: nlat, lng: nlng }
+						: undefined
 			};
 		});
 

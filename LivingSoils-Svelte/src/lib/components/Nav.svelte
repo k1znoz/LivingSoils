@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, tick } from 'svelte';
 	import { page } from '$app/stores';
-    import { resolve } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import '../styles/nav.css';
 	import type { MenuItem } from '$lib/types';
 

@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import '../styles/components.css';
 	import '../styles/ferme.css';
-    import { resolve } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import type { HomepageData } from '$lib/types';
 
 	let { data }: { data: Partial<HomepageData> } = $props();

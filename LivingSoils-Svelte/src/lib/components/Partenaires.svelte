@@ -6,7 +6,7 @@
 	import '../../styles/pages/partenaires.css';
 	import '../../lib/styles/components.css';
 	import type { Partner } from '$lib/types';
-    import { resolve } from '$app/paths';
+	import { resolve } from '$app/paths';
 
 	// Accept dynamic partners from homepage
 	export let partners: Partner[] = [];

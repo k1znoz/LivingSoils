@@ -1,7 +1,7 @@
 <script>
 	import '../styles/components.css';
 	import '../styles/footer.css';
-    import { resolve } from '$app/paths';
+	import { base } from '$app/paths';
 </script>
 
 <footer class="footer row-spread">
@@ -21,7 +21,7 @@
 				<p class="footer-section-desc">
 					Soutenez notre mission de régénération des sols en faisant un don ou en devenant membre.
 				</p>
-				<a href={resolve('/soutenir')} class="footer-btn">Faire un don</a>
+				<a href="{base}/soutenir" class="footer-btn">Faire un don</a>
 			</div>
 
 			<!-- Section 2: Réseaux sociaux -->
@@ -99,13 +99,13 @@
 				<p class="footer-copyright">&copy; 2024 LivingSoils. Tous droits réservés.</p>
 			</div>
 			<div class="footer-bottom-links">
-				<a href="/mentions-legales" class="footer-link-small">Mentions légales</a>
+				<a href="{base}/mentions-legales" class="footer-link-small">Mentions légales</a>
 				<span class="footer-separator">•</span>
-				<a href="/politique-de-confidentialite" class="footer-link-small"
+				<a href="{base}/politique-de-confidentialite" class="footer-link-small"
 					>Politique de confidentialité</a
 				>
 				<span class="footer-separator">•</span>
-				<a href="/cgu" class="footer-link-small">CGU</a>
+				<a href="{base}/cgu" class="footer-link-small">CGU</a>
 			</div>
 		</div>
 	</div>

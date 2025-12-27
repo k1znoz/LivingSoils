@@ -2,7 +2,6 @@
 	import Hero from '$lib/components/Hero.svelte';
 	import '../../styles/pages/partenaires.css';
 	import '../../lib/styles/components.css';
-	import { resolve } from '$app/paths';
 	import type { PartenairesData } from '$lib/types';
 	export let data: PartenairesData;
 </script>
@@ -55,7 +54,7 @@
 				<article class="partner-card">
 					{#if partner.website}
 						<a
-							href={resolve(partner.website)}
+							href={partner.website}
 							target="_blank"
 							rel="noopener noreferrer"
 							class="partner-card__link"
