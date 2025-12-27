@@ -1,63 +1,151 @@
 /* Page: Soutenir */
-/* NOTE: Base .card is defined in lib/styles/components.css. This file provides page-specific overrides. */
-.page-container {
-	max-width: 1100px;
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+.soutenir-container {
+	max-width: 1200px;
 	margin: 0 auto;
-	padding: 2rem var(--page-gutter, 1rem);
+	padding: 3rem var(--page-gutter, 1.5rem) 4rem;
 }
 
-.page-title {
+.section-header {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 2.5rem;
+}
+
+.section-title {
 	font-family: var(--font-heading);
-	font-size: clamp(1.75rem, 2.2vw + 1rem, 2.5rem);
-	margin: 1rem var(--page-gutter, 1rem) 1.5rem;
+	font-size: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+	color: var(--color-text);
+	text-align: center;
+	margin-bottom: 0.75rem;
 }
 
-.options {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-	gap: 1.25rem;
-}
-
-.card {
-	border-radius: 10px;
-	padding: 1.25rem;
-}
-
-.option {
-	background: var(--surface);
-	border: 1px solid var(--border);
-	border-radius: 12px;
-	padding: 1rem;
-}
-
-.option h2 {
+.section-subtitle {
+	text-align: center;
+	color: var(--color-text-muted, #666);
 	font-size: 1.125rem;
-	margin-bottom: 0.5rem;
-}
-
-.option p {
-	color: var(--text-muted, #555);
+	max-width: 600px;
+	margin: 0 auto;
 	line-height: 1.6;
 }
 
-.cta-button {
-	display: inline-block;
-	margin-top: 1rem;
-	padding: 0.75rem 1.25rem;
-	background: var(--color-primary, #2563eb);
+.soutenir-empty {
+	text-align: center;
+	color: var(--color-text-muted);
+	padding: 3rem 1rem;
+}
+
+/* ============================================
+   OPTIONS GRID
+   ============================================ */
+.options-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 1.5rem;
+}
+
+/* ============================================
+   OPTION CARD
+   ============================================ */
+.option-card {
+	background: var(--color-surface, #fff);
+	border: 1px solid var(--color-border, #e5e7eb);
+	border-radius: 16px;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.option-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.option-card__icon {
+	width: 56px;
+	height: 56px;
+	background: linear-gradient(135deg, var(--color-primary, #2d5016) 0%, var(--color-primary-light, #4a7c23) 100%);
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	margin-bottom: 1.25rem;
+}
+
+.option-card__title {
+	font-family: var(--font-heading);
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: var(--color-text);
+	margin-bottom: 0.75rem;
+}
+
+.option-card__description {
+	color: var(--color-text-muted, #555);
+	line-height: 1.7;
+	font-size: 0.95rem;
+	flex-grow: 1;
+	margin-bottom: 1.25rem;
+}
+
+.option-card__cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1.5rem;
+	background: var(--color-primary, #2d5016);
 	color: #fff;
 	text-decoration: none;
-	border-radius: 6px;
+	border-radius: 8px;
 	font-weight: 600;
+	font-size: 0.95rem;
+	transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.cta-button:hover {
-	background: var(--color-primary-darker, #1d4ed8);
+.option-card__cta:hover {
+	background: var(--color-primary-dark, #1e3a0f);
+	transform: translateX(2px);
 }
 
-/* Responsive tweaks */
+.option-card__arrow {
+	transition: transform 0.2s ease;
+}
+
+.option-card__cta:hover .option-card__arrow {
+	transform: translateX(4px);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+	.soutenir-container {
+		padding: 2rem var(--page-gutter, 1rem) 3rem;
+	}
+
+	.options-grid {
+		grid-template-columns: 1fr;
+		gap: 1.25rem;
+	}
+
+	.option-card {
+		padding: 1.5rem;
+	}
+
+	.option-card__icon {
+		width: 48px;
+		height: 48px;
+	}
+}
+
 @media (min-width: 1200px) {
-	.page-container {
-		max-width: 1200px;
+	.options-grid {
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
