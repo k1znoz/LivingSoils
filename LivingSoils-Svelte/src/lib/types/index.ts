@@ -37,8 +37,8 @@ export type Farm = {
 export type Partner = {
 	_id: string;
 	name: string;
-	website?: string | null;
-	logoUrl?: string | null;
+	logoUrl?: string;
+	website?: string;
 };
 
 export type SupportOption = {

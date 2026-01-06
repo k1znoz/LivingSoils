@@ -1,12 +1,7 @@
-<script context="module" lang="ts">
-	// Shape returned by homepage loader
-</script>
-
 <script lang="ts">
 	import '../../styles/pages/partenaires.css';
 	import '../../lib/styles/components.css';
 	import type { Partner } from '$lib/types';
-	import { resolve } from '$app/paths';
 
 	// Accept dynamic partners from homepage
 	export let partners: Partner[] = [];
@@ -33,7 +28,7 @@
 					<div class="partner-card">
 						{#if p.website}
 							<a
-								href={resolve(p.website)}
+								href={p.website}
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`Visiter ${p.name}`}
@@ -59,7 +54,7 @@
 		{/if}
 
 		<div class="text-center mt-12">
-			<a href={resolve('/partenaires')} class="btn btn-outline"> Découvrir tous nos partenaires </a>
+			<a href="/partenaires" class="btn btn-primary"> Découvrir tous nos partenaires </a>
 		</div>
 	</div>
 </section>

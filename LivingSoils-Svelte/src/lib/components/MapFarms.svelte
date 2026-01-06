@@ -9,7 +9,9 @@
 
 	let mapEl: HTMLDivElement;
 	let map: import('leaflet').Map | undefined; // typed after dynamic import
+	let L: any; // Référence à Leaflet pour activer les contrôles
 	let errorMsg = '';
+	let isMapActive = false;
 
 	function validCoord(
 		c: { lat: number; lng: number } | undefined | null
@@ -34,9 +36,18 @@
 			// Dynamic import of Leaflet and its CSS on client only
 			const LeafletModule = await import('leaflet');
 			await import('leaflet/dist/leaflet.css');
-			const L = LeafletModule.default;
+			L = LeafletModule.default;
 
-			map = L.map(mapEl, { scrollWheelZoom: true });
+			// Initialiser la carte avec toutes les interactions désactivées
+			map = L.map(mapEl, {
+				dragging: false,
+				touchZoom: false,
+				scrollWheelZoom: false,
+				doubleClickZoom: false,
+				boxZoom: false,
+				keyboard: false,
+				zoomControl: false
+			});
 
 			const coords = farms.map((f) => f?.coordinates).filter((c) => validCoord(c));
 
@@ -45,11 +56,11 @@
 				attribution: '&copy; OpenStreetMap contributors'
 			}).addTo(map);
 
-			if (coords.length) {
+			if (coords.length && map) {
 				const markers = coords.map((c) => L.marker([c.lat, c.lng]));
 				const group = L.featureGroup(markers).addTo(map);
 				map.fitBounds(group.getBounds(), { padding: [20, 20] });
-			} else {
+			} else if (map) {
 				map.setView([46.8, 2.2], 6); // centre France par défaut
 			}
 
@@ -74,6 +85,20 @@
 		}
 	}
 
+	function activateMap() {
+		if (!map || !L || isMapActive) return;
+		isMapActive = true;
+		
+		// Réactiver toutes les interactions
+		map.dragging?.enable();
+		map.touchZoom?.enable();
+		map.scrollWheelZoom?.enable();
+		map.doubleClickZoom?.enable();
+		map.boxZoom?.enable();
+		map.keyboard?.enable();
+		map.addControl(L.control.zoom());
+	}
+
 	onMount(() => {
 		initMap();
 	});
@@ -88,7 +113,22 @@
 	});
 </script>
 
-<div bind:this={mapEl} class="map-root">
+<div
+	class="map-container"
+	class:active={isMapActive}
+	on:click={activateMap}
+	on:keydown={(e) => e.key === 'Enter' && activateMap()}
+	role="button"
+	tabindex="0"
+>
+	<div bind:this={mapEl} class="map-root"></div>
+	
+	{#if !isMapActive}
+		<div class="map-cover">
+			<span class="map-cover-text">Cliquer pour interagir avec la carte</span>
+		</div>
+	{/if}
+	
 	{#if errorMsg}
 		<div class="map-error" role="alert">{errorMsg}</div>
 	{/if}

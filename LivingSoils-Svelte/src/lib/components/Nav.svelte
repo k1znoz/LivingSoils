@@ -121,7 +121,7 @@
 		<ul class="menu desktop-menu">
 			{#each menuItems as item, i (item.href)}
 				<li class="nav-item" style="--delay: {i + 1}">
-					<a href={resolve(item.href)} class="menu-link" class:active={currentPath === item.href}>
+					<a href={item.href} class="menu-link" class:active={currentPath === item.href}>
 						<span class="link-text">{item.label}</span>
 						<span class="link-seed"></span>
 					</a>
@@ -181,7 +181,7 @@
 				{#each menuItems as item, i (item.href)}
 					<li class="mobile-menu-item" style="--delay: {i}">
 						<a
-							href={resolve(item.href)}
+							href={item.href}
 							class="mobile-menu-link"
 							role="menuitem"
 							class:active={currentPath === item.href}

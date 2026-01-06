@@ -4,8 +4,13 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import Footer from '$lib/components/Footer.svelte';
 	import Nav from '$lib/components/Nav.svelte';
+	import { afterNavigate } from '$app/navigation';
 
 	let { children } = $props();
+
+	afterNavigate(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
 </script>
 
 <svelte:head>
@@ -51,3 +56,4 @@
 
 	<Footer />
 </div>
+
