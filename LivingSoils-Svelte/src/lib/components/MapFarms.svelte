@@ -88,7 +88,7 @@
 	function activateMap() {
 		if (!map || !L || isMapActive) return;
 		isMapActive = true;
-		
+
 		// Réactiver toutes les interactions
 		map.dragging?.enable();
 		map.touchZoom?.enable();
@@ -122,13 +122,13 @@
 	tabindex="0"
 >
 	<div bind:this={mapEl} class="map-root"></div>
-	
+
 	{#if !isMapActive}
 		<div class="map-cover">
 			<span class="map-cover-text">Cliquer pour interagir avec la carte</span>
 		</div>
 	{/if}
-	
+
 	{#if errorMsg}
 		<div class="map-error" role="alert">{errorMsg}</div>
 	{/if}

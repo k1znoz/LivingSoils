@@ -59,8 +59,24 @@ export type Post = {
 	imageAlt?: string;
 };
 
+export type Stats = {
+	wasteValued?: string;
+	fertilizerProduced?: string;
+	proteinsProduced?: string;
+	hectaresRegenerated?: string;
+	chickensFed?: string;
+	costReduction?: string;
+	chemicalElimination?: string;
+	jobsCreated?: string;
+	directJobs?: number;
+	indirectJobs?: number;
+	womenTrained?: string;
+	farmCountOverride?: number;
+};
+
 export type HomepageData = {
 	farmCount: number;
+	stats?: Stats;
 };
 
 export type ActualitesData = {

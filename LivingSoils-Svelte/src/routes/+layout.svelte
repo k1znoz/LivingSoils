@@ -9,8 +9,8 @@
 	let { children } = $props();
 
 	afterNavigate(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    });
+		window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+	});
 </script>
 
 <svelte:head>
@@ -56,4 +56,3 @@
 
 	<Footer />
 </div>
-

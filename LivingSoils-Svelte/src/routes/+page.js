@@ -36,7 +36,7 @@ function urlFor(source) {
  */
 
 /**
- * @returns {Promise<{ farmCount: number, posts: Post[], partners: Partner[] }>}
+ * @returns {Promise<{ farmCount: number, posts: Post[], partners: Partner[], stats: any | null }>}
  */
 export async function load() {
 	try {
@@ -80,17 +80,22 @@ export async function load() {
 			logoUrl: p.logo ? urlFor(p.logo) : null
 		}));
 
+		// Fetch singleton site stats document (if present)
+		const stats = await client.fetch(`*[_type == "siteStats"][0]`);
+
 		return {
 			farmCount: farms.length,
 			posts: postsWithImages || [],
-			partners: partnersWithLogos || []
+			partners: partnersWithLogos || [],
+			stats: stats || null
 		};
 	} catch (error) {
 		console.error('Error loading data:', error);
 		return {
 			farmCount: 0,
 			posts: [],
-			partners: []
+			partners: [],
+			stats: null
 		};
 	}
 }

@@ -28,13 +28,13 @@
 						/>
 					</svg>
 				</div>
-				<div class="stat-number">60t</div>
+				<div class="stat-number">{data.stats?.wasteValued ?? '60t'}</div>
 				<div class="stat-label">Déchets valorisés/mois</div>
 				<div class="stat-details">
-					→ 12t de fertilisant naturel<br />
-					→ 8t de protéines (larves)<br />
-					→ 24 hectares régénérés<br />
-					→ 12 000 poulets nourris
+					→ {data.stats?.fertilizerProduced ?? '12t de fertilisant naturel'}<br />
+					→ {data.stats?.proteinsProduced ?? '8t de protéines (larves)'}<br />
+					→ {data.stats?.hectaresRegenerated ?? '24 hectares régénérés'}<br />
+					→ {data.stats?.chickensFed ?? '12 000 poulets nourris'}
 				</div>
 			</div>
 
@@ -52,12 +52,12 @@
 						/>
 					</svg>
 				</div>
-				<div class="stat-number">-40%</div>
+				<div class="stat-number">{data.stats?.costReduction ?? '-40%'}</div>
 				<div class="stat-label">Coûts de production</div>
 				<div class="stat-details">
-					Grâce aux fertilisants naturels,<br />
-					les coopératives réduisent<br />
-					drastiquement leurs dépenses
+					{data.stats?.costReduction
+						? 'Grâce aux fertilisants naturels, les coopératives réduisent drastiquement leurs dépenses'
+						: 'Grâce aux fertilisants naturels,\nles coopératives réduisent\ndrastiquement leurs dépenses'}
 				</div>
 			</div>
 
@@ -72,7 +72,7 @@
 						/>
 					</svg>
 				</div>
-				<div class="stat-number">90%</div>
+				<div class="stat-number">{data.stats?.chemicalElimination ?? '90%'}</div>
 				<div class="stat-label">Produits chimiques éliminés</div>
 				<div class="stat-details">
 					Autonomie complète vis-à-vis<br />
@@ -90,11 +90,11 @@
 						/>
 					</svg>
 				</div>
-				<div class="stat-number">50+</div>
+				<div class="stat-number">{data.stats?.jobsCreated ?? '50+'}</div>
 				<div class="stat-label">Emplois créés</div>
 				<div class="stat-details">
-					20 emplois directs<br />
-					+ 30 emplois indirects<br />
+					{data.stats?.directJobs ?? 20} emplois directs<br />
+					+ {data.stats?.indirectJobs ?? 30} emplois indirects<br />
 					dans l'écosystème local
 				</div>
 			</div>
@@ -108,12 +108,12 @@
 						/>
 					</svg>
 				</div>
-				<div class="stat-number">60+</div>
+				<div class="stat-number">{data.stats?.womenTrained ?? '60+'}</div>
 				<div class="stat-label">Femmes formées</div>
 				<div class="stat-details">
-					Formation à l'élevage de la<br />
-					mouche soldat noire et à<br />
-					l'agriculture régénérative
+					{data.stats?.womenTrained
+						? "Formation à l'élevage de la mouche soldat noire et à l'agriculture régénérative"
+						: "Formation à l'élevage de la\nmouche soldat noire et à\nl'agriculture régénérative"}
 				</div>
 			</div>
 
@@ -128,7 +128,7 @@
 						/>
 					</svg>
 				</div>
-				<div class="stat-number">{data.farmCount || 0}</div>
+				<div class="stat-number">{data.stats?.farmCountOverride ?? data.farmCount ?? 0}</div>
 				<div class="stat-label">Fermes régénératrices</div>
 				<div class="stat-details">
 					Réseau mondial de fermes<br />
