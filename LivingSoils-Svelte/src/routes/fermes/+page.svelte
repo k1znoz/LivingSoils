@@ -15,6 +15,10 @@
 		name="description"
 		content="Découvrez les fermes du réseau LivingSoils engagées dans la régénération des sols. Explorez notre carte interactive et rencontrez des agriculteurs passionnés par l'agroécologie."
 	/>
+	<link rel="canonical" href="https://thelivingsoils.org/fermes" />
+	
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
 	<meta
 		property="og:title"
 		content="Nos Fermes - LivingSoils | Fermes en Agriculture Régénérative"
@@ -24,11 +28,18 @@
 		content="Découvrez les fermes du réseau LivingSoils engagées dans la régénération des sols. Explorez notre carte interactive des fermes."
 	/>
 	<meta property="og:url" content="https://thelivingsoils.org/fermes" />
+	<meta property="og:image" content="https://thelivingsoils.org/ressources/og-image-fermes.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Nos Fermes - LivingSoils" />
 	<meta
 		name="twitter:description"
 		content="Découvrez les fermes du réseau LivingSoils engagées dans la régénération des sols."
 	/>
+	<meta name="twitter:image" content="https://thelivingsoils.org/ressources/og-image-fermes.png" />
 </svelte:head>
 
 <Hero

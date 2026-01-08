@@ -13,17 +13,28 @@
 		name="description"
 		content="Soutenez LivingSoils et participez à la régénération des sols. Devenez partenaire, proposez votre ferme ou contribuez au développement de l'agriculture régénérative."
 	/>
+	<link rel="canonical" href="https://thelivingsoils.org/soutenir" />
+	
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Nous Soutenir - LivingSoils | Rejoignez le Mouvement" />
 	<meta
 		property="og:description"
 		content="Soutenez LivingSoils et participez à la régénération des sols. Devenez partenaire ou proposez votre ferme."
 	/>
 	<meta property="og:url" content="https://thelivingsoils.org/soutenir" />
+	<meta property="og:image" content="https://thelivingsoils.org/ressources/og-image.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Nous Soutenir - LivingSoils" />
 	<meta
 		name="twitter:description"
 		content="Soutenez LivingSoils et participez à la régénération des sols."
 	/>
+	<meta name="twitter:image" content="https://thelivingsoils.org/ressources/og-image.png" />
 </svelte:head>
 
 <Hero

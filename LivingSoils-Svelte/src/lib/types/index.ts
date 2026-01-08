@@ -37,7 +37,7 @@ export type Farm = {
 export type Partner = {
 	_id: string;
 	name: string;
-	logoUrl?: string;
+	logoUrl?: string | null;
 	website?: string;
 };
 

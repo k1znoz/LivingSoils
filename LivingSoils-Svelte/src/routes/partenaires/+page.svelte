@@ -12,6 +12,10 @@
 		name="description"
 		content="Découvrez les organisations et entreprises qui soutiennent LivingSoils dans sa mission de régénération des sols et de promotion de l'agriculture durable."
 	/>
+	<link rel="canonical" href="https://thelivingsoils.org/partenaires" />
+	
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
 	<meta
 		property="og:title"
 		content="Nos Partenaires - LivingSoils | Soutiens de l'Agriculture Durable"
@@ -21,11 +25,18 @@
 		content="Découvrez les organisations et entreprises qui soutiennent LivingSoils dans sa mission de régénération des sols."
 	/>
 	<meta property="og:url" content="https://thelivingsoils.org/partenaires" />
+	<meta property="og:image" content="https://thelivingsoils.org/ressources/og-image.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="Nos Partenaires - LivingSoils" />
 	<meta
 		name="twitter:description"
 		content="Découvrez les organisations qui soutiennent LivingSoils dans sa mission de régénération des sols."
 	/>
+	<meta name="twitter:image" content="https://thelivingsoils.org/ressources/og-image.png" />
 </svelte:head>
 
 <Hero

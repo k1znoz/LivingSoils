@@ -3,31 +3,31 @@ export async function GET() {
 	const pages = [
 		{
 			url: '',
-			lastmod: '2025-12-16',
+			lastmod: '2026-01-08',
 			priority: '1.0',
 			changefreq: 'monthly'
 		},
 		{
 			url: '/fermes',
-			lastmod: '2025-12-16',
+			lastmod: '2026-01-08',
 			priority: '0.9',
 			changefreq: 'weekly'
 		},
 		{
 			url: '/actualites',
-			lastmod: '2025-12-16',
+			lastmod: '2026-01-08',
 			priority: '0.9',
 			changefreq: 'weekly'
 		},
 		{
 			url: '/partenaires',
-			lastmod: '2025-12-16',
+			lastmod: '2026-01-08',
 			priority: '0.8',
 			changefreq: 'monthly'
 		},
 		{
 			url: '/soutenir',
-			lastmod: '2025-12-16',
+			lastmod: '2026-01-08',
 			priority: '0.8',
 			changefreq: 'monthly'
 		}
